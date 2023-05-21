@@ -4,4 +4,39 @@
 
 <mapper namespace="com.ssafy.osan.domain.spot.dao.SpotDao">
 
+     <!--스팟 등록-->
+    <insert id="insertSpot" parameterType="Spot">
+        INSERT INTO spot (spotName, content, writer, spotLatlng, image)
+        VALUES (#{spotName} , #{content}, #{writer}, #{spotLatlng} , #{image});
+    </insert>
+
+<!--    스팟 리스트 조회-->
+    <select id="selectAll" resultType="Spot">
+        SELECT *
+        FROM spot;
+    </select>
+    
+<!--    스팟 디테일 조회-->
+    <select id="selectSpot" parameterType="int" resultType="Spot">
+        SELECT *
+        FROM spot
+        WHERE spotId = #{int};
+    </select>
+
+<!--    스팟 수정-->
+    <update id="updateSpot" parameterType="Spot">
+        UPDATE
+            spot
+        SET
+            spotName = #{spotName} , content = #{content}, writer = #{writer}, spotLatlng = #{spotLatlng} , image = #{image}
+        WHERE
+            spotId = #{spotId};
+    </update>
+
+<!--    스팟 삭제-->
+    <delete id="deleteSpot" parameterType="int">
+        DELETE FROM spot
+        WHERE spotId = #{int};
+    </delete>
+
 </mapper>

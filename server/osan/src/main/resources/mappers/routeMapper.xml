@@ -5,4 +5,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.ssafy.osan.domain.route.dao.RouteDao">
 
+    <!-- 산책로 등록-->
+    <!-- views rating createdAt updatedAt -->
+    <insert id="insertRoute" parameterType="Route">
+        INSERT INTO route (title, content, writer, points, time, image)
+        VALUES (#{title}, #{content}, #{writer}, #{points}, ${time}, ${image})
+    </insert>
+
+    <!-- 산책로 전체 리스트-->
+    <select id="selectAllRoute" resultType="Route">
+        SELECT *
+        FROM route
+    </select>
+
+    <!-- 산책로 선택-->
+    <select id="selectRoute" parameterType="Integer" resultType="Route">
+        SELECT *
+        FROM route
+        WHERE routeId = #{routeId}
+    </select>
+
+    <!-- 산책로 수정-->
+    <update id="updateRoute" parameterType="Route">
+        UPDATE route
+        SET title=#{title}, content=#{content}, points=#{points}, time=${time}, image=${image}
+        WHERE routeId=${routeId};
+    </update>
+
+    <!-- 산책로 삭제-->
+    <delete id="deleteRoute" parameterType="Integer">
+        DELETE FROM route
+        WHERE routeId=${routeId};
+     </delete>
+
 </mapper>
+

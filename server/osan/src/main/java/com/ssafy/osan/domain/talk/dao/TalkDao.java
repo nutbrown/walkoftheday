@@ -4,6 +4,12 @@ import com.ssafy.osan.domain.talk.dto.Talk;
 
 import java.util.List;
 
-public interface talkDao {
+public interface TalkDao {
+
+    int insertTalk(Talk talk);
+
     List<Talk> selectAllTalk();
+
+    int deleteTalk(int talkId);
 }
+

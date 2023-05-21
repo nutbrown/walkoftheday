@@ -4,4 +4,17 @@
 
 <mapper namespace="com.ssafy.osan.domain.user.dao.UserDao">
 
+    <!-- 회원 등록 -->
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO user
+        VALUES (#{userId}, #{password}, #{email}, #{nickname})
+    </insert>
+
+    <!-- 아이디로 회원 가져오기 -->
+    <select id="getUser" parameterType="String" resultType="User">
+        SELECT *
+        FROM user
+        WHERE userId = #{userId}
+    </select>
+
 </mapper>
