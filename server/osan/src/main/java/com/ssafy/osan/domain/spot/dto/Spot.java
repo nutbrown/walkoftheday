@@ -10,7 +10,7 @@ public class Spot {
     private String spotLatlng;
     private int views;
     private int rating;
-    private int imageId;
+    private int image;
     private Date createdAt;
     private Date updatedAt;
 
@@ -73,12 +73,12 @@ public class Spot {
         this.rating = rating;
     }
 
-    public int getImageId() {
-        return imageId;
+    public int getImage() {
+        return image;
     }
 
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public Date getCreatedAt() {

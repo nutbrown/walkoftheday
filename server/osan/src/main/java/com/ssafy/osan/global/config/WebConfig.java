@@ -20,9 +20,4 @@ public class WebConfig implements WebMvcConfigurer {
         WebMvcConfigurer.super.addCorsMappings(registry);
     }
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-
-    }
 }

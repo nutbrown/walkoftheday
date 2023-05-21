@@ -18,22 +18,31 @@ public class SpotController {
     @Autowired
     SpotService spotService;
 
-//  Spot Create
+    //  Spot Create
     @PostMapping("")
-    public ResponseEntity<?> createSpot(@RequestPart("spot") Spot spot,
-                                       @RequestPart("image") MultipartFile image) {
+    public ResponseEntity<?> createSpot(@RequestPart("spotName") String spotName,
+                                        @RequestPart("content") String content,
+                                        @RequestPart("writer") String writer,
+                                        @RequestPart("spotLatlng") String spotLatLng,
+                                        @RequestPart("image") MultipartFile image) {
 
-        int result = spotService.writeSpot(spot,image);
+        Spot spot = new Spot();
+        spot.setSpotName(spotName);
+        spot.setContent(content);
+        spot.setWriter(writer);
+        spot.setSpotLatlng(spotLatLng);
+
+        int result = spotService.writeSpot(spot, image);
 
         // 정상 등록되지 않았을 때
-        if(result == 0) {
+        if (result == 0) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
         // 정산 등록
         return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
     }
 
-//    Show Spot List
+    //    Show Spot List
     @GetMapping("")
     public ResponseEntity<?> showSpot() {
 
@@ -41,24 +50,23 @@ public class SpotController {
         return new ResponseEntity<List<Spot>>(spotList, HttpStatus.OK);
     }
 
-//    show Spot Detail
+    //    show Spot Detail
     @GetMapping("/{spotId}")
     public ResponseEntity<?> detailSpot(int spotId) {
         return null;
     }
 
-//    modify Spot
+    //    modify Spot
     @PutMapping("")
     public ResponseEntity<?> putSpot(@RequestPart("spot") Spot spot,
                                      @RequestPart("image") MultipartFile image) {
         return null;
     }
 
-//    deleteSpot
+    //    deleteSpot
     @DeleteMapping("/{spotId}")
     public ResponseEntity<?> deleteSpot(int spotId) {
         return null;
     }
-
 
 }

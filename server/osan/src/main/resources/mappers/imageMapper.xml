@@ -6,7 +6,7 @@
 
     <!-- Insert Image-->
     <insert id="insertImage" parameterType="Image" keyProperty="imageId" useGeneratedKeys="true">
-        INSERT INTO image('imagePath', 'orgFileName', 'fileName')
+        INSERT INTO image(imagePath, orgFileName, fileName)
         Values (#{imagePath}, #{orgFileName}, #{fileName});
     </insert>
 

@@ -26,7 +26,7 @@ public class SpotServiceImpl implements SpotService {
     public int writeSpot(Spot spot, MultipartFile file) {
 
         // imgId 가 0이면 이미지가 없는 것이다.
-        spot.setImageId(fileManagementService.uploadImage(file));
+        spot.setImage(fileManagementService.uploadImage(file));
 
         return spotDao.insertSpot(spot);
     }
