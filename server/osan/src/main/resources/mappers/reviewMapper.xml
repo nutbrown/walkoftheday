@@ -4,4 +4,76 @@
 
 <mapper namespace="com.ssafy.osan.domain.review.dao.ReviewDao">
 
+    <!-- 리뷰 등록 -->
+    <insert id="insertRouteReview" parameterType="Review">
+        INSERT INTO review (category, routeId, writer, rating)
+        VALUES (#{category} , #{routeId}, #{writer}, #{rating});
+    </insert>
+
+    <insert id="insertSpotReview" parameterType="Review">
+        INSERT INTO review (category, spotId, writer, rating)
+        VALUES (#{category} , #{spotId}, #{writer}, #{rating});
+    </insert>
+
+    <!-- 리뷰 전체 조회 -->
+    <!-- 리뷰 리스트 조회 -->
+    <!-- 리뷰 수정-->
+    <!-- 리뷰 삭제-->
+
+    <!--기존 산책로 레이팅 불러오기-->
+    <select id="selectRouteRating" parameterType="int" resultType="int">
+        select rating
+        from route
+        where routeId = #{int};
+    </select>
+
+    <!-- 산책로 리뷰 개수 불러오기 -->
+    <select id="selectRouteReviewCount" parameterType="int" resultType="int">
+        select COUNT(*)
+        from (
+            select *
+            from route
+            where routeId = #{int}
+        ) as route
+        INNER JOIN review ON route.routeId = review.routeId;
+    </select>
+
+    <!-- 산책로 레이팅 변경   -->
+    <update id="updateRouteRating" parameterType="Review">
+        UPDATE
+            route
+        SET
+            rating = #{rating}
+        WHERE
+            spotId = #{spotId};
+    </update>
+
+    <!--기존 경유지 레이팅 불러오기-->
+    <select id="selectSpotRating" parameterType="int" resultType="int">
+        select rating
+        from spot
+        where spotId = #{int};
+    </select>
+
+    <!-- 경유지 리뷰 개수 불러오기 -->
+    <select id="selectSpotReviewCount" parameterType="int" resultType="int">
+        select COUNT(*)
+        from (
+            select *
+            from spot
+            where spotId = #{int}
+        ) as spot
+        INNER JOIN review ON spot.spotId = review.spotId;
+    </select>
+
+    <!-- 경유지 레이팅 변경   -->
+    <update id="updateSpotRating" parameterType="review">
+        UPDATE
+        spot
+        SET
+        rating = #{rating}
+        WHERE
+        spotId = #{spotId};
+    </update>
+
 </mapper>

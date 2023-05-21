@@ -1,7 +1,9 @@
 package com.ssafy.osan.domain.review.controller;
 
+import com.ssafy.osan.domain.review.dto.Review;
 import com.ssafy.osan.domain.review.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +17,14 @@ public class ReviewController {
 
     // 리뷰 등록
     @PostMapping("/{category}/{id}")
-    public ResponseEntity<?> createReview(@PathVariable int category, @PathVariable int id) {
+    public ResponseEntity<?> createReview(@PathVariable int category, @PathVariable int id, @RequestBody Review review) {
+        int result = reviewService.writeReview(category, id, review);
 
-        return null;
+        // 등록이 안되어 있을 때
+        if (result == 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(result,HttpStatus.CREATED);
     }
 
     // 카테고리 별 리뷰 전체 조회
