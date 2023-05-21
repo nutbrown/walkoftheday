@@ -33,17 +33,31 @@ public class SpotServiceImpl implements SpotService {
 
     @Override
     public List<Spot> showAll() {
-        return null;
+        List<Spot> spotList = spotDao.selectAll();
+        for(Spot spot : spotList) {
+            spot.setImgFileName(fileManagementService.selectFileName(spot.getImage()));
+        }
+        return spotList;
     }
 
     @Override
     public Spot detailSpot(int spotId) {
-        return null;
+        
+        Spot spot = spotDao.selectSpot(spotId);
+        // 스팟이 널이 아니면 이미지 세팅
+        if(spot !=null) {
+            spot.setImgFileName(fileManagementService.selectFileName(spot.getImage()));    
+        }
+        return spot;
     }
 
     @Override
-    public int modifySpot(Spot spot, MultipartFile image) {
-        return 0;
+    public int modifySpot(Spot spot, MultipartFile file) {
+
+        // imgId 가 0이면 이미지가 없는 것이다.
+        spot.setImage(fileManagementService.uploadImage(file));
+
+        return spotDao.updateSpot(spot);
     }
 
     @Override

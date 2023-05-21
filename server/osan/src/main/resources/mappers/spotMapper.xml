@@ -10,4 +10,27 @@
         VALUES (#{spotName} , #{content}, #{writer}, #{spotLatlng} , #{image});
     </insert>
 
+<!--    스팟 리스트 조회-->
+    <select id="selectAll" resultType="Spot">
+        SELECT *
+        FROM spot;
+    </select>
+    
+<!--    스팟 디테일 조회-->
+    <select id="selectSpot" parameterType="int" resultType="Spot">
+        SELECT *
+        FROM spot
+        WHERE spotId = #{int};
+    </select>
+
+<!--    스팟 수정-->
+    <update id="updateSpot" parameterType="Spot">
+        UPDATE
+            spot
+        SET
+            spotName = #{spotName} , content = #{content}, writer = #{writer}, spotLatlng = #{spotLatlng} , image = #{image}
+        WHERE
+            spotId = #{spotId};
+    </update>
+
 </mapper>

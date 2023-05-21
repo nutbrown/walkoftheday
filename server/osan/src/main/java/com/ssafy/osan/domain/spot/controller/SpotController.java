@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -39,7 +38,7 @@ public class SpotController {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
         // 정산 등록
-        return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     //    Show Spot List
@@ -47,20 +46,49 @@ public class SpotController {
     public ResponseEntity<?> showSpot() {
 
         List<Spot> spotList = spotService.showAll();
-        return new ResponseEntity<List<Spot>>(spotList, HttpStatus.OK);
+
+        // SpotList가 없다면
+        if (spotList == null || spotList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(spotList, HttpStatus.OK);
     }
 
     //    show Spot Detail
     @GetMapping("/{spotId}")
-    public ResponseEntity<?> detailSpot(int spotId) {
-        return null;
+    public ResponseEntity<?> detailSpot(@PathVariable int spotId) {
+        System.out.println(spotId);
+        Spot spot = spotService.detailSpot(spotId);
+        if (spot == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(spot, HttpStatus.OK);
     }
 
     //    modify Spot
-    @PutMapping("")
-    public ResponseEntity<?> putSpot(@RequestPart("spot") Spot spot,
+    @PutMapping("/{spotId}")
+    public ResponseEntity<?> putSpot(@PathVariable int spotId,
+                                     @RequestPart("spotName") String spotName,
+                                     @RequestPart("content") String content,
+                                     @RequestPart("writer") String writer,
+                                     @RequestPart("spotLatlng") String spotLatLng,
                                      @RequestPart("image") MultipartFile image) {
-        return null;
+
+        Spot spot = new Spot();
+        spot.setSpotId(spotId);
+        spot.setSpotName(spotName);
+        spot.setContent(content);
+        spot.setWriter(writer);
+        spot.setSpotLatlng(spotLatLng);
+
+        int result = spotService.modifySpot(spot, image);
+
+        // 정상 등록되지 않았을 때
+        if (result == 0) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+        // 정산 등록
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     //    deleteSpot
