@@ -7,6 +7,7 @@ public class Review {
         private int category;
         private int routeId;
         private int spotId;
+        private String content;
         private String writer;
         private int rating;
         private Date createdAt;
@@ -77,6 +78,14 @@ public class Review {
 
         public void setUpdatedAt(Date updatedAt) {
                 this.updatedAt = updatedAt;
+        }
+
+        public String getContent() {
+                return content;
+        }
+
+        public void setContent(String content) {
+                this.content = content;
         }
 
         @Override

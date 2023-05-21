@@ -3,5 +3,94 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.osan.domain.review.dao.ReviewDao">
+    <!-- 리뷰 조회  -->
+    <select id="selectReview" parameterType="int" resultType="Review">
+        SELECT *
+        FROM review
+        WHERE reviewId = #{int};
+    </select>
+
+    <!-- 리뷰 등록 -->
+    <insert id="insertRouteReview" parameterType="Review">
+        INSERT INTO review (category, routeId, writer, rating, content)
+        VALUES (#{category} , #{routeId}, #{writer}, #{rating}, #{content});
+    </insert>
+
+    <insert id="insertSpotReview" parameterType="Review">
+        INSERT INTO review (category, spotId, writer, rating, content)
+        VALUES (#{category} , #{spotId}, #{writer}, #{rating}, #{content});
+    </insert>
+
+    <!-- 리뷰 전체 조회 -->
+    <select id="selectAll" parameterType="int" resultType="Review">
+        select *
+        from review
+        where category = #{int};
+    </select>
+
+    <!-- 리뷰 리스트 조회 -->
+    <select id="selectRouteList" parameterType="int" resultType="Review">
+        select *
+        from review
+        where routeId = #{int} ;
+    </select>
+    <select id="selectSpotList" parameterType="int" resultType="Review">
+        select *
+        from review
+        where spotId = #{int} ;
+    </select>
+
+
+    <!-- 리뷰 수정-->
+    <update id="updateReview" parameterType="Review">
+        UPDATE
+            review
+        SET
+            rating = #{rating}, content = #{content}
+        WHERE
+            reviewId = #{reviewId};
+    </update>
+
+    <!-- 리뷰 삭제-->
+    <delete id="deleteReview" parameterType="int">
+        DELETE FROM review
+        WHERE reviewId = #{int};
+    </delete>
+
+    <!-- 산책로 평점 계산-->
+    <select id="selectRouteRating" parameterType="int" resultType="int">
+        select IFNULL(AVG(rating),0)
+        from review
+        where routeId = #{int};
+    </select>
+
+    <!-- 산책로 레이팅 변경   -->
+    <update id="updateRouteRating" parameterType="Review">
+        UPDATE
+            route
+        SET
+            rating = #{rating}
+        WHERE
+            routeId = #{routeId};
+    </update>
+
+
+    <!-- 경유지 평점 계산-->
+    <select id="selectSpotRating" parameterType="int" resultType="int">
+        select IFNULL(AVG(rating),0)
+        from review
+        where spotId = #{int};
+    </select>
+
+
+    <!-- 경유지 레이팅 변경   -->
+    <update id="updateSpotRating" parameterType="review">
+        UPDATE
+        spot
+        SET
+        rating = #{rating}
+        WHERE
+        spotId = #{spotId};
+    </update>
 
 </mapper>
