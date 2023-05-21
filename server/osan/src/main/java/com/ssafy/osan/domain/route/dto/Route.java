@@ -3,6 +3,7 @@ package com.ssafy.osan.domain.route.dto;
 import com.ssafy.osan.domain.spot.dto.Spot;
 import com.ssafy.osan.global.dto.Image;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +16,10 @@ public class Route {
     private int views;
     private int rating;
     private int time;
-    private Image image;
-    private Date cretedAt;
+    private int image;
+    private Date createdAt;
     private Date updatedAt;
+    private int[] spotsId;
     private List<Spot> spots;
 
     public Route() {
@@ -87,20 +89,20 @@ public class Route {
         this.time = time;
     }
 
-    public Image getImage() {
+    public int getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(int image) {
         this.image = image;
     }
 
-    public Date getCretedAt() {
-        return cretedAt;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCretedAt(Date cretedAt) {
-        this.cretedAt = cretedAt;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Date getUpdatedAt() {
@@ -109,6 +111,14 @@ public class Route {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int[] getSpotsId() {
+        return spotsId;
+    }
+
+    public void setSpotsId(int[] spotsId) {
+        this.spotsId = spotsId;
     }
 
     public List<Spot> getSpots() {
@@ -131,8 +141,9 @@ public class Route {
                 ", rating=" + rating +
                 ", time=" + time +
                 ", image=" + image +
-                ", cretedAt=" + cretedAt +
+                ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", spotsId=" + Arrays.toString(spotsId) +
                 ", spots=" + spots +
                 '}';
     }
