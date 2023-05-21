@@ -57,8 +57,13 @@ public class SpotController {
 
     //    show Spot Detail
     @GetMapping("/{spotId}")
-    public ResponseEntity<?> detailSpot(int spotId) {
-        return null;
+    public ResponseEntity<?> detailSpot(@PathVariable int spotId) {
+        System.out.println(spotId);
+        Spot spot = spotService.detailSpot(spotId);
+        if(spot == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(spot, HttpStatus.OK);
     }
 
     //    modify Spot

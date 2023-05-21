@@ -42,7 +42,13 @@ public class SpotServiceImpl implements SpotService {
 
     @Override
     public Spot detailSpot(int spotId) {
-        return null;
+        
+        Spot spot = spotDao.selectSpot(spotId);
+        // 스팟이 널이 아니면 이미지 세팅
+        if(spot !=null) {
+            spot.setImgFileName(fileManagementService.selectFileName(spot.getImage()));    
+        }
+        return spot;
     }
 
     @Override

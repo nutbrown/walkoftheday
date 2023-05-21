@@ -13,7 +13,14 @@
 <!--    스팟 리스트 조회-->
     <select id="selectAll" resultType="Spot">
         SELECT *
-        from spot;
+        FROM spot;
+    </select>
+    
+<!--    스팟 디테일 조회-->
+    <select id="selectSpot" parameterType="int" resultType="Spot">
+        SELECT *
+        FROM spot
+        WHERE spotId = #{int};
     </select>
 
 </mapper>
