@@ -9,10 +9,10 @@ import java.util.List;
 
 public interface SpotService {
 
-    int writeSpot(Spot spot, MultipartFile image);
+    int writeSpot(Spot spot, MultipartFile file);
     List<Spot> showAll();
     Spot detailSpot(int spotId);
-    int modifySpot(Spot spot, MultipartFile image);
+    int modifySpot(Spot spot, MultipartFile file);
     int deleteSpot(int spotId);
 
 }
