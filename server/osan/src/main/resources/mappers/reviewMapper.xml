@@ -6,13 +6,13 @@
 
     <!-- 리뷰 등록 -->
     <insert id="insertRouteReview" parameterType="Review">
-        INSERT INTO review (category, routeId, writer, rating)
-        VALUES (#{category} , #{routeId}, #{writer}, #{rating});
+        INSERT INTO review (category, routeId, writer, rating, content)
+        VALUES (#{category} , #{routeId}, #{writer}, #{rating}, #{content});
     </insert>
 
     <insert id="insertSpotReview" parameterType="Review">
-        INSERT INTO review (category, spotId, writer, rating)
-        VALUES (#{category} , #{spotId}, #{writer}, #{rating});
+        INSERT INTO review (category, spotId, writer, rating, content)
+        VALUES (#{category} , #{spotId}, #{writer}, #{rating}, #{content});
     </insert>
 
     <!-- 리뷰 전체 조회 -->
@@ -21,7 +21,20 @@
         from review
         where category = #{int};
     </select>
+
     <!-- 리뷰 리스트 조회 -->
+    <select id="selectRouteList" parameterType="int" resultType="Review">
+        select *
+        from review
+        where routeId = #{int} ;
+    </select>
+    <select id="selectSpotList" parameterType="int" resultType="Review">
+        select *
+        from review
+        where spotId = #{int} ;
+    </select>
+
+
     <!-- 리뷰 수정-->
     <!-- 리뷰 삭제-->
 

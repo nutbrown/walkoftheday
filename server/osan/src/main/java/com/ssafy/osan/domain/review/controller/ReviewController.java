@@ -26,7 +26,7 @@ public class ReviewController {
         if (result == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(result,HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     // 카테고리 별 리뷰 전체 조회
@@ -34,7 +34,7 @@ public class ReviewController {
     public ResponseEntity<?> getAllReview(@PathVariable int category) {
 
         List<Review> reviewList = reviewService.showAllReview(category);
-        if(reviewList == null || reviewList.isEmpty()) {
+        if (reviewList == null || reviewList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(reviewList, HttpStatus.OK);
@@ -44,7 +44,11 @@ public class ReviewController {
     @GetMapping("/{category}/{id}")
     public ResponseEntity<?> getReviewList(@PathVariable int category, @PathVariable int id) {
 
-        return null;
+        List<Review> reviewList = reviewService.showReviewList(category, id);
+        if (reviewList == null || reviewList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(reviewList, HttpStatus.OK);
     }
 
     // 리뷰 수정

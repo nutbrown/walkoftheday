@@ -9,7 +9,8 @@ public interface ReviewDao {
     // 리뷰 전체 조회
     List<Review> selectAll(int category);
     // 리뷰 리스트 조회
-    List<Review> selectList(int category, int id);
+    List<Review> selectRouteList(int id);
+    List<Review> selectSpotList(int id);
     // 리뷰 등록
     int insertRouteReview(Review review);
     int insertSpotReview(Review review);

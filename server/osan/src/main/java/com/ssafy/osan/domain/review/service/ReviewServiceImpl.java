@@ -20,7 +20,11 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<Review> showReviewList(int category, int id) {
-        return null;
+        if(category == 1) {
+            return reviewDao.selectRouteList(id);
+        } else {
+            return reviewDao.selectSpotList(id);
+        }
     }
 
     @Override
