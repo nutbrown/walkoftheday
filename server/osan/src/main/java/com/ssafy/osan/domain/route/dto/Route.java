@@ -87,11 +87,11 @@ public class Route {
         this.time = time;
     }
 
-    public int getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
