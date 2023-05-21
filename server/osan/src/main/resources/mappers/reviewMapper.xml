@@ -36,6 +36,15 @@
 
 
     <!-- 리뷰 수정-->
+    <update id="updateReview" parameterType="Review">
+        UPDATE
+            review
+        SET
+            rating = #{rating}, content = #{content}
+        WHERE
+            reviewId = #{reviewId};
+    </update>
+
     <!-- 리뷰 삭제-->
 
     <!-- 산책로 평점 계산-->

@@ -52,10 +52,16 @@ public class ReviewController {
     }
 
     // 리뷰 수정
-    @PutMapping("/{reviewId}")
-    public ResponseEntity<?> putReview(@PathVariable int reviewId) {
+    @PutMapping("/{category}/{reviewId}")
+    public ResponseEntity<?> putReview(@PathVariable int category, @PathVariable int reviewId, @RequestBody Review review) {
 
-        return null;
+        review.setCategory(category);
+
+        int result = reviewService.modifyReview(reviewId, review);
+        if(result == 0) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
     // 리뷰 삭제

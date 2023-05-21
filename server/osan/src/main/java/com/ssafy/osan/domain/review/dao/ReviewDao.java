@@ -15,7 +15,7 @@ public interface ReviewDao {
     int insertRouteReview(Review review);
     int insertSpotReview(Review review);
     // 리뷰 수정
-    int updateReview(int reviewId, Review review);
+    int updateReview(Review review);
     // 리뷰 삭제
     int deleteReview(int reviewId);
 
