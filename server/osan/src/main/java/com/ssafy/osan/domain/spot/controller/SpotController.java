@@ -39,7 +39,7 @@ public class SpotController {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
         // 정산 등록
-        return new ResponseEntity<Integer>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     //    Show Spot List
@@ -47,7 +47,12 @@ public class SpotController {
     public ResponseEntity<?> showSpot() {
 
         List<Spot> spotList = spotService.showAll();
-        return new ResponseEntity<List<Spot>>(spotList, HttpStatus.OK);
+
+        // SpotList가 없다면
+        if(spotList == null || spotList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(spotList, HttpStatus.OK);
     }
 
     //    show Spot Detail

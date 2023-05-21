@@ -10,4 +10,10 @@
         VALUES (#{spotName} , #{content}, #{writer}, #{spotLatlng} , #{image});
     </insert>
 
+<!--    스팟 리스트 조회-->
+    <select id="selectAll" resultType="Spot">
+        SELECT *
+        from spot;
+    </select>
+
 </mapper>

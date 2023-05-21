@@ -11,6 +11,7 @@ public class Spot {
     private int views;
     private int rating;
     private int image;
+    private String imgFileName;
     private Date createdAt;
     private Date updatedAt;
 
@@ -95,5 +96,13 @@ public class Spot {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getImgFileName() {
+        return imgFileName;
+    }
+
+    public void setImgFileName(String imgFileName) {
+        this.imgFileName = imgFileName;
     }
 }

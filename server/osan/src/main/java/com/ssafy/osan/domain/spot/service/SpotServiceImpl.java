@@ -33,7 +33,11 @@ public class SpotServiceImpl implements SpotService {
 
     @Override
     public List<Spot> showAll() {
-        return null;
+        List<Spot> spotList = spotDao.selectAll();
+        for(Spot spot : spotList) {
+            spot.setImgFileName(fileManagementService.selectFileName(spot.getImage()));
+        }
+        return spotList;
     }
 
     @Override
