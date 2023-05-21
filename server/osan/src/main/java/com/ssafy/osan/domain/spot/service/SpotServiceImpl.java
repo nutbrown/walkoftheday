@@ -62,6 +62,7 @@ public class SpotServiceImpl implements SpotService {
 
     @Override
     public int deleteSpot(int spotId) {
-        return 0;
+
+        return spotDao.deleteSpot(spotId);
     }
 }

@@ -33,4 +33,10 @@
             spotId = #{spotId};
     </update>
 
+<!--    스팟 삭제-->
+    <delete id="deleteSpot" parameterType="int">
+        DELETE FROM spot
+        WHERE spotId = #{int};
+    </delete>
+
 </mapper>
