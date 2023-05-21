@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface ReviewService {
 
+    // 리뷰 아이디로 리뷰 조회
+    Review showReview(int reviewId);
+
     // 리뷰 전체 조회
     List<Review> showAllReview(int category);
 

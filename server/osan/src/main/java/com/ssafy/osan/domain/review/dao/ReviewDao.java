@@ -5,6 +5,9 @@ import com.ssafy.osan.domain.review.dto.Review;
 import java.util.List;
 
 public interface ReviewDao {
+
+    // 리뷰 한 개 조회
+    Review selectReview(int reviewId);
     
     // 리뷰 전체 조회
     List<Review> selectAll(int category);

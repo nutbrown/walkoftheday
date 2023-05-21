@@ -3,6 +3,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ssafy.osan.domain.review.dao.ReviewDao">
+    <!-- 리뷰 조회  -->
+    <select id="selectReview" parameterType="int" resultType="Review">
+        SELECT *
+        FROM review
+        WHERE reviewId = #{int};
+    </select>
 
     <!-- 리뷰 등록 -->
     <insert id="insertRouteReview" parameterType="Review">
@@ -46,10 +52,14 @@
     </update>
 
     <!-- 리뷰 삭제-->
+    <delete id="deleteReview" parameterType="int">
+        DELETE FROM review
+        WHERE reviewId = #{int};
+    </delete>
 
     <!-- 산책로 평점 계산-->
     <select id="selectRouteRating" parameterType="int" resultType="int">
-        select AVG(rating)
+        select IFNULL(AVG(rating),0)
         from review
         where routeId = #{int};
     </select>
@@ -67,7 +77,7 @@
 
     <!-- 경유지 평점 계산-->
     <select id="selectSpotRating" parameterType="int" resultType="int">
-        select AVG(rating)
+        select IFNULL(AVG(rating),0)
         from review
         where spotId = #{int};
     </select>

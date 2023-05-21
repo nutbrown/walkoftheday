@@ -67,7 +67,11 @@ public class ReviewController {
     // 리뷰 삭제
     @DeleteMapping("/{reviewId}")
     public ResponseEntity<?> deleteReview(@PathVariable int reviewId) {
+        int result = reviewService.deleteReview(reviewId);
 
-        return null;
+        if(result == 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 }

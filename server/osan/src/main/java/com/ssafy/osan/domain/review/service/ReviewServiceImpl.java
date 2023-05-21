@@ -14,6 +14,11 @@ public class ReviewServiceImpl implements ReviewService {
     ReviewDao reviewDao;
 
     @Override
+    public Review showReview(int reviewId) {
+        return reviewDao.selectReview(reviewId);
+    }
+
+    @Override
     public List<Review> showAllReview(int category) {
         return reviewDao.selectAll(category);
     }
@@ -68,7 +73,6 @@ public class ReviewServiceImpl implements ReviewService {
         
         // 리뷰 수정 관련해서 수정 관려해서 어느정도까지 데이터가 들어오는지 확인하여 수정해야함
 
-
         review.setReviewId(reviewId);
 
         // 리뷰 수정
@@ -88,8 +92,29 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public int deleteReview(int reviewId) {
-        return 0;
+
+        Review review = showReview(reviewId);
+
+        if(review == null) {
+            return 0;
+        }
+
+        // 리뷰 삭제
+        int result = reviewDao.deleteReview(reviewId);
+
+        if(result == 1) {
+            // 평점 재계산
+            if(review.getCategory() == 1) {
+                // 산책로 평점 재계산
+                modifyRouteRating(review.getRouteId(), review);
+            } else  {
+                modifySpotRating(review.getSpotId(), review);
+            }
+        }
+        return result;
     }
+
+
 
     // 산책로 리뷰 평점 계산
 
