@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
@@ -31,7 +33,11 @@ public class ReviewController {
     @GetMapping("/{category}")
     public ResponseEntity<?> getAllReview(@PathVariable int category) {
 
-        return null;
+        List<Review> reviewList = reviewService.showAllReview(category);
+        if(reviewList == null || reviewList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(reviewList, HttpStatus.OK);
     }
 
     // 리뷰 리스트 조회

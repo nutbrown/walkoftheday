@@ -15,7 +15,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<Review> showAllReview(int category) {
-        return null;
+        return reviewDao.selectAll(category);
     }
 
     @Override
