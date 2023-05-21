@@ -50,8 +50,16 @@ public class FileManagementServiceImpl implements FileManagementService {
             }
 
             // 혜련이 귀여워
-            return imageDao.insertImage(image);
+            imageDao.insertImage(image);
+            return image.getImageId();
         }
         return 0;
     }
+
+    @Override
+    public String selectFileName(int imageId) {
+        return imageDao.selectImage(imageId);
+    }
+
+
 }

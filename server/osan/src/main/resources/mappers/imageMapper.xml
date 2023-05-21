@@ -9,5 +9,12 @@
         INSERT INTO image(imagePath, orgFileName, fileName)
         Values (#{imagePath}, #{orgFileName}, #{fileName});
     </insert>
+    
+<!--    이미지 이름 불러오기-->
+    <select id="selectImage" parameterType="int" resultType="String">
+        SELECT fileName
+        FROM image
+        WHERE imageID = #{int};
+    </select>
 
 </mapper>
