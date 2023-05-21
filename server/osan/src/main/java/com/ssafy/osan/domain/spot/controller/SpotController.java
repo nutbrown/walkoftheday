@@ -57,7 +57,7 @@ public class SpotController {
     //    show Spot Detail
     @GetMapping("/{spotId}")
     public ResponseEntity<?> detailSpot(@PathVariable int spotId) {
-        System.out.println(spotId);
+
         Spot spot = spotService.detailSpot(spotId);
         if (spot == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -93,8 +93,16 @@ public class SpotController {
 
     //    deleteSpot
     @DeleteMapping("/{spotId}")
-    public ResponseEntity<?> deleteSpot(int spotId) {
-        return null;
+    public ResponseEntity<?> deleteSpot(@PathVariable int spotId) {
+
+
+        int result = spotService.deleteSpot(spotId);
+
+        // 삭제가 안될 때
+        if (result == 0) {
+            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
+        }
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
 }
