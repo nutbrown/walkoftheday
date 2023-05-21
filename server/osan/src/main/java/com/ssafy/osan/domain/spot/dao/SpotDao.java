@@ -1,6 +1,8 @@
 package com.ssafy.osan.domain.spot.dao;
 
 import com.ssafy.osan.domain.spot.dto.Spot;
+import com.ssafy.osan.global.dto.Image;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,6 +23,4 @@ public interface SpotDao {
     // delete Spot
     int deleteSpot(int SpotId);
 
-    // handle image
-    int insertImage();
 }

@@ -4,4 +4,15 @@
 
 <mapper namespace="com.ssafy.osan.domain.spot.dao.SpotDao">
 
+<!--     이미지 등록-->
+<!--    <insert id="insertImage" parameterType="Image" useGeneratedKeys="true" keyProperty="imageId">-->
+<!--        -->
+
+<!--    </insert>-->
+
+<!--     스팟 등록-->
+<!--    <insert id="insertSpot" parameterType="Spot">-->
+
+<!--    </insert>-->
+
 </mapper>
