@@ -23,11 +23,7 @@ public interface ReviewDao {
 
     int updateSpotRating(Review review);
 
-    // 기존 평점 가져오기
-    int selectSpotRating(int spotId);
-    int selectRouteRating(int routeId);
-
-    // 기존 평점 개수 가져오기
-    int selectSpotReviewCount(int spotId);
-    int selectRouteReviewCount(int routeId);
+    // 리뷰 평점 계산하기
+    int selectRouteRating(int id);
+    int selectSpotRating(int id);
 }

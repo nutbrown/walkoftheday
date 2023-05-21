@@ -20,22 +20,11 @@
     <!-- 리뷰 수정-->
     <!-- 리뷰 삭제-->
 
-    <!--기존 산책로 레이팅 불러오기-->
+    <!-- 산책로 평점 계산-->
     <select id="selectRouteRating" parameterType="int" resultType="int">
-        select rating
-        from route
+        select AVG(rating)
+        from review
         where routeId = #{int};
-    </select>
-
-    <!-- 산책로 리뷰 개수 불러오기 -->
-    <select id="selectRouteReviewCount" parameterType="int" resultType="int">
-        select COUNT(*)
-        from (
-            select *
-            from route
-            where routeId = #{int}
-        ) as route
-        INNER JOIN review ON route.routeId = review.routeId;
     </select>
 
     <!-- 산책로 레이팅 변경   -->
@@ -45,26 +34,17 @@
         SET
             rating = #{rating}
         WHERE
-            spotId = #{spotId};
+            routeId = #{routeId};
     </update>
 
-    <!--기존 경유지 레이팅 불러오기-->
+
+    <!-- 경유지 평점 계산-->
     <select id="selectSpotRating" parameterType="int" resultType="int">
-        select rating
-        from spot
+        select AVG(rating)
+        from review
         where spotId = #{int};
     </select>
 
-    <!-- 경유지 리뷰 개수 불러오기 -->
-    <select id="selectSpotReviewCount" parameterType="int" resultType="int">
-        select COUNT(*)
-        from (
-            select *
-            from spot
-            where spotId = #{int}
-        ) as spot
-        INNER JOIN review ON spot.spotId = review.spotId;
-    </select>
 
     <!-- 경유지 레이팅 변경   -->
     <update id="updateSpotRating" parameterType="review">
