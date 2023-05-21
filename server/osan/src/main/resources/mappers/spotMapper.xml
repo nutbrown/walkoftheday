@@ -4,15 +4,10 @@
 
 <mapper namespace="com.ssafy.osan.domain.spot.dao.SpotDao">
 
-<!--     이미지 등록-->
-<!--    <insert id="insertImage" parameterType="Image" useGeneratedKeys="true" keyProperty="imageId">-->
-<!--        -->
-
-<!--    </insert>-->
-
-<!--     스팟 등록-->
-<!--    <insert id="insertSpot" parameterType="Spot">-->
-
-<!--    </insert>-->
+     <!--스팟 등록-->
+    <insert id="insertSpot" parameterType="Spot">
+        INSERT INTO spot (spotName, content, writer, spotLatlng, image)
+        VALUES (#{spotName} , #{content}, #{writer}, #{spotLatlng} , #{image});
+    </insert>
 
 </mapper>
