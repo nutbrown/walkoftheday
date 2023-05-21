@@ -1,6 +1,7 @@
 package com.ssafy.osan.domain.route.dto;
 
 import com.ssafy.osan.domain.spot.dto.Spot;
+import com.ssafy.osan.global.dto.Image;
 
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ public class Route {
     private int views;
     private int rating;
     private int time;
-    private int image;
+    private Image image;
     private Date cretedAt;
     private Date updatedAt;
     private List<Spot> spots;
