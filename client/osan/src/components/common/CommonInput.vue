@@ -1,0 +1,1 @@
+// 2. 공통 input component

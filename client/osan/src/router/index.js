@@ -2,6 +2,25 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+// // 페이지 정보들
+
+// // 메인페이지
+// import Main from '../views/MainRoute.vue'
+// // 유저 회원가입 페이지
+// import Regist from '../views/UserRgist.vue'
+
+// // 산책로
+// import Route from '../views/route/RouteMain.vue'
+// import RouteDetail from '../views/route/RouteDetail.vue'
+// import RouteCreate from '../views/route/RouteCreate.vue'
+
+// // 경유지
+// import Spot from '../views/spot/SpotMain.vue'
+// import SpotDetail from '../views/spot/SpotDetail.vue'
+// import SpotCreate from '../views/spot/SpotCreate.vue'
+
+
+
 Vue.use(VueRouter)
 
 const routes = [
