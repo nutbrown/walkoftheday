@@ -2,24 +2,22 @@
 <template>
   <div>
     <div>산책 한 마디</div>
-     <p>
-        {{content}}
-     </p>
+    <p>
+      {{ content }}
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-    name: "CommentContent",
-    props:{
-        content: {
-            type: String,
-            required : true
-        }
-    }
-}
+  name: "CommentContent",
+  props: {
+    content: {
+      type: String,
+      required: true,
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
