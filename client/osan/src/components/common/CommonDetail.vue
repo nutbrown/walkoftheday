@@ -9,7 +9,7 @@
       <div v-if="showRoute">총 거리 : {{ distance }}</div>
       <div v-if="showRoute">소요 시간 : {{ time }}</div>
       <div v-if="showSpot">주소 : {{ address }}</div>
-      <div>별점 : {{ star }}</div>
+      <CommonRating :rating="rating"></CommonRating>
       <common-button theme="move" value="후기 작성하기"></common-button>
     </div>
   </div>
@@ -17,10 +17,13 @@
 
 <script>
 import CommonButton from "./CommonButton.vue";
+import CommonRating from "./CommonRating.vue";
+import CommonRating from "./CommonRating.vue";
+
 
 export default {
   name: "CommonContent",
-  components: { CommonButton },
+  components: { CommonButton, CommonRating },
   props: {
     showRoute: {
       type: Boolean,
