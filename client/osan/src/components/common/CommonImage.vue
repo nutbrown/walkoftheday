@@ -1,88 +1,50 @@
+// 11. 리스트 이미지 컴포넌트
+
 <template>
-  <swiper
-    :style="{
-      '--swiper-navigation-color': '#fff',
-      '--swiper-pagination-color': '#fff',
-    }"
-    :zoom="true"
-    :navigation="true"
-    :pagination="{
-      clickable: true,
-    }"
-    :modules="modules"
-    class="mySwiper"
-  >
-    <swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-      </div> </swiper-slide
-    ><swiper-slide>
-      <div class="swiper-zoom-container">
-        <img src="https://swiperjs.com/demos/images/nature-9.jpg" />
-      </div>
-    </swiper-slide>
-  </swiper>
+  <div>
+    <img :src="type" :alt="alt" :style="styles" />
+  </div>
 </template>
+
 <script>
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
-
-import "swiper/css";
-import "swiper/swiper-bundle.css";
-
-import "swiper/css/zoom";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-import "./style.css";
-
-// import required modules
-import { Zoom, Navigation, Pagination } from "swiper";
-
 export default {
-  components: {
-    Swiper,
-    SwiperSlide,
+
+  probs: {
+    src : {
+      type : String,
+    },
+    alt : {
+      type : String,
+    },
+    theme : {
+      type : String,
+    }
   },
-  mounted() {
-    new Swiper(".swiper-container", {
-      // Swiper 옵션 설정
-    });
-  },
-  setup() {
-    return {
-      modules: [Zoom, Navigation, Pagination],
-    };
+  computed: {
+    styles() {
+      // 산책로, 경유지 이동하기 버튼
+      if (this.theme === "List") {
+        return {
+          "--width": "5rem",
+          "--height": "3rem",
+        };
+      } else {
+        return {
+          "--width": "10rem",
+          "--height": "6rem",
+        };
+      }
+
+    },
   },
 };
 </script>
+
+<style>
+
+
+img {
+  width : var(--width);
+  height : var(--height);
+}
+</style>

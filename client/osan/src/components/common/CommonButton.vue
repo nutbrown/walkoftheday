@@ -9,7 +9,16 @@
 <script>
 export default {
   name: "CommonButton",
-  props: { theme: String, value: String },
+  props: { 
+    theme: {
+      type : String,
+      required : true, 
+    }, 
+    value: {
+      type : String,
+      required : true,
+    },
+  },
   methods: {
     handleClick() {
       this.$emit("handle-click");
