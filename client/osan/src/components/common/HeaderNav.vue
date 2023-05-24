@@ -2,8 +2,8 @@
   <div class="outer-box">
 		<a><img src="../../assets/wotd-logo.png"/></a>
 		<div>
-			<common-button :theme="login" :value="로그인"></common-button>
-			<common-button :theme="login" :value="로그아웃"></common-button>
+			<common-button theme="login" value="로그인"></common-button>
+			<common-button theme="login" value="로그아웃"></common-button>
 		</div>
 	</div>
 </template>

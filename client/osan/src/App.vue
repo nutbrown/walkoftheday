@@ -1,12 +1,25 @@
 <template>
   <div id="app">
+    <HeaderNav></HeaderNav>
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">홈</router-link> |
+      <router-link to="/route">산책로</router-link> |
+      <router-link to="/spot">산책 스팟</router-link>
     </nav>
-    <router-view/>
+    <hr />
+
+    <router-view />
   </div>
 </template>
+
+<script>
+import HeaderNav from "./components/common/HeaderNav.vue";
+export default {
+  components: {
+    HeaderNav,
+  },
+};
+</script>
 
 <style>
 #app {
