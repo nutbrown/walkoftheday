@@ -3,7 +3,6 @@
 <template>
   <div>
     <div v-if="routes">
-      <div>타이틀</div>
       <div v-for="(route, index) in routes" :key="index">
         <common-select :route="route" :viewRoute="true" :viewSpot="false">
         </common-select>
@@ -11,8 +10,7 @@
     </div>
 
     <div v-if="spots">
-      <div>타이틀</div>
-      <div v-for="(route, index) in routes" :key="index">
+      <div v-for="(spot, index) in spots" :key="index">
         <common-select :route="route" :viewRoute="false" :viewSpot="true">
         </common-select>
       </div>
