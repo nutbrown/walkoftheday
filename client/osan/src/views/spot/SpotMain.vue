@@ -6,7 +6,7 @@
     <div class="route-content">
       <common-list :spots="spots"></common-list>
       <div>
-        <common-button value="경유지 등록하기" theme="move"></common-button>
+        <common-button value="경유지 등록하기" theme="move" @handle-click="handleBtn"></common-button>
         <common-map></common-map>
       </div>
     </div>
@@ -56,6 +56,11 @@ export default {
         console.error(error);
       })
   },
+  methods : {
+    handleBtn() {
+      this.$router.push('spot/create');
+    }
+  }
 };
 </script>
 
