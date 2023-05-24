@@ -30,14 +30,14 @@
           {{ spot.title }}
         </div>
         <div class="detail">
-          <div class="rating">별점 : {{ route.rating }}</div>
+          <div class="rating">별점 : {{ spot.rating }}</div>
 
-          <div class="date">작성일 : {{ route.updatedAt }}</div>
+          <div class="date">작성일 : {{ spot.updatedAt }}</div>
 
-          <div class="writer">작성자 : {{ route.writer }}</div>
+          <div class="writer">작성자 : {{ spot.writer }}</div>
         </div>
         <div class="content">
-          {{ route.content }}
+          {{ spot.content }}
         </div>
       </div>
 

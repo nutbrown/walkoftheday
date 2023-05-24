@@ -18,7 +18,6 @@
 <script>
 import CommonButton from "./CommonButton.vue";
 import CommonRating from "./CommonRating.vue";
-import CommonRating from "./CommonRating.vue";
 
 
 export default {
