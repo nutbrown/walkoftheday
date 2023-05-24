@@ -46,7 +46,7 @@ const routes = [
       },
       {
         path: 'create',
-        name: 'RouteDetail',
+        name: 'RouteCreate',
         component: RouteCreate
       }
     ]
@@ -63,7 +63,7 @@ const routes = [
       },
       {
         path: 'create',
-        name: 'SpotDetail',
+        name: 'SpotCreate',
         component: SpotCreate
       }
     ]
