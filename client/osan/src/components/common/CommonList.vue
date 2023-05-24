@@ -10,7 +10,7 @@
     </div>
 
     <div v-if="spots">
-      <div v-for="(route, index) in routes" :key="index">
+      <div v-for="(spot, index) in spots" :key="index">
         <common-select :route="route" :viewRoute="false" :viewSpot="true">
         </common-select>
       </div>

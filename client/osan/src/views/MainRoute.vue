@@ -31,8 +31,10 @@ import CurrentLocation from "@/components/main/CurrentLocation.vue";
 import CurrentWeather from "@/components/main/CurrentWeather.vue";
 import TalkList from "@/components/main/TalkList.vue";
 import CommonMap from "@/components/common/CommonMap.vue";
+import http from "@/util/axiosConfig.js"
 
 export default {
+
   data() {
     return {
       routes: [],
@@ -45,9 +47,23 @@ export default {
     TalkList,
     CommonMap,
   },
-  mounted() {
-
+  created() {
+    this.fetchRoute();
+    http.get("/route")
+      .then((response) => {
+        console.log(response);
+        this.routes = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   },
+  methods: {
+    fetchRoute() {
+      
+    }
+
+  }
 };
 </script>
 
