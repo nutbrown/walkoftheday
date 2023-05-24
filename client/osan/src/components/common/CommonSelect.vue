@@ -23,7 +23,6 @@
       </div>
 
       <div>
-        <CommonImage></CommonImage>
         <common-button theme="select" value="산책로 이동하기"></common-button>
       </div>
     </div>
@@ -47,7 +46,6 @@
       </div>
 
       <div>
-        <CommonImage></CommonImage>
         <common-button theme="select" value="경유지 이동하기"></common-button>
       </div>
     </div>
@@ -56,15 +54,12 @@
 
 <script>
 import CommonButton from "./CommonButton.vue";
-import CommonImage from "./CommonImage.vue";
+
 import CommonRating from './CommonRating.vue';
 
 export default {
   components: { CommonButton, CommonRating },
   name: "CommonSelect",
-  comments: {
-    CommonImage,
-  },
   props: {
     viewSpot: {
       type: Boolean,
