@@ -51,7 +51,6 @@ export default {
     this.fetchRoute();
     http.get("/route")
       .then((response) => {
-        console.log(response);
         this.routes = response.data;
       })
       .catch((error) => {
