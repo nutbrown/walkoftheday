@@ -1,6 +1,6 @@
 <template>
   <div class="outer-box">
-		<a><img src="../../assets/wotd-logo.png"/></a>
+		<router-link to="/"><img src="../../assets/wotd-logo.png"/></router-link> 
 		<div>
 			<common-button theme="login" value="로그인"></common-button>
 			<common-button theme="login" value="로그아웃"></common-button>
