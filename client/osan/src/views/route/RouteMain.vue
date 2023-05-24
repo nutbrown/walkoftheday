@@ -1,7 +1,6 @@
 // 산책로 메인페이지
 <template>
 	<div class="outer-box">
-		<header-nav></header-nav>
 		<common-title title="산책로" :property="routeProperty"></common-title>
 		<div class="route-content">
 			<common-list :routes="routes"></common-list>
@@ -17,7 +16,6 @@
 </template>
 
 <script>
-import HeaderNav from '@/components/common/HeaderNav.vue'
 import CommonTitle from '@/components/common/CommonTitle.vue'
 import CommonList from '@/components/common/CommonList.vue'
 import CommonMap from '@/components/common/CommonMap.vue'
@@ -75,7 +73,6 @@ export default {
 	},
 
 	components: {
-		HeaderNav,
 		CommonTitle,
 		CommonList,
 		CommonMap,

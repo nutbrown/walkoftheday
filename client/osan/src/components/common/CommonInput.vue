@@ -26,7 +26,7 @@ export default {
     },
     inputImage: {
       type: Boolean,
-      required: true,
+      required: false,
     },
   },
 };
