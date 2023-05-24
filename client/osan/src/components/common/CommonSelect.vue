@@ -23,8 +23,7 @@
       </div>
 
       <div>
-        <CommonImage></CommonImage>
-        <common-button theme="select" value="산책로 이동하기"></common-button>
+        <common-button theme="select" value="산책로 이동하기" @handle-click="goRouteDetail"></common-button>
       </div>
     </div>
     <div v-if="viewSpot">
@@ -47,8 +46,7 @@
       </div>
 
       <div>
-        <CommonImage></CommonImage>
-        <common-button theme="select" value="경유지 이동하기"></common-button>
+        <common-button theme="select" value="경유지 이동하기" @handle-click="goSpotDetail"></common-button>
       </div>
     </div>
   </div>
@@ -56,15 +54,12 @@
 
 <script>
 import CommonButton from "./CommonButton.vue";
-import CommonImage from "./CommonImage.vue";
+
 import CommonRating from './CommonRating.vue';
 
 export default {
   components: { CommonButton, CommonRating },
   name: "CommonSelect",
-  comments: {
-    CommonImage,
-  },
   props: {
     viewSpot: {
       type: Boolean,
@@ -79,6 +74,14 @@ export default {
       type: Object,
     },
   },
+  methods: {
+    goRouteDetail() {
+      this.$router.push(`route/detail?routeId=${this.route.routeId}`);
+    }, 
+    goSpotDetail() {
+      this.$router.push(`spot /detail?spotId=${this.spot.spotId}`);
+    },
+  }
 };
 </script>
 

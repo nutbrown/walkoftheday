@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 
 // 메인페이지
 import Main from '../views/MainRoute.vue'
+import RouteView from '../views/RouteView.vue'
+import SpotView from '../views/SpotView.vue'
 // 유저 회원가입 페이지
 
 // 산책로
@@ -36,9 +38,14 @@ const routes = [
   },
   {
     path: '/route',
-    name: 'routeMain',
-    component: Route,
+    name: 'routeView',
+    component: RouteView,
     children: [
+      {
+        path: '',
+        name: 'Route',
+        component: Route
+      },
       {
         path: 'detail/:routeId',
         name: 'RouteDetail',
@@ -53,9 +60,14 @@ const routes = [
   },
   {
     path: '/spot',
-    name: 'spotMain',
-    component: Spot,
+    name: 'spotView',
+    component: SpotView,
     children: [
+      {
+        path: '',
+        name: 'SpotMain',
+        component: Spot
+      },
       {
         path: 'detail/:spotId',
         name: 'SpotDetail',
