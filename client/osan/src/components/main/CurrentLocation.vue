@@ -36,11 +36,11 @@ export default {
       script.src =
         '//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=87d6dba422d7d0edb18ff8c447c4ce18&libraries=clusterer,drawing,services'
       /* global kakao */
-      script.addEventListener('load', function() {
-        kakao.maps.load(function () {
+      script.addEventListener('load', () => {
+        kakao.maps.load(() => {
           // 카카오맵 API가 로딩이 완료된 후 지도의 기본적인 세팅을 시작해야 한다.
           // 는 아니고 여기서는 주소 반환
-          this.showAddress()
+          this.showAddress();
         })
       })
       document.head.appendChild(script)
@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     showAddress() {
+      console.log("안녕");
       var geocoder = new kakao.maps.services.Geocoder();
       var coord = new kakao.maps.LatLng(37.50128800000034, 127.03528175393564);
       geocoder.coord2Address(coord.getLng(), coord.getLat(), this.callback);
