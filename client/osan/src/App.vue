@@ -4,7 +4,7 @@
     <nav>
       <router-link to="/">홈</router-link> |
       <router-link to="/route">산책로</router-link> |
-      <router-link to="/spot">산책 스팟</router-link>
+      <router-link to="/spot">경유지</router-link>
     </nav>
     <hr />
 
