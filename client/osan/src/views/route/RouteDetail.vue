@@ -27,7 +27,7 @@
 				후기
 			</div>
 			<review-list></review-list>
-			<common-input inputText="후기를"></common-input>
+			<textarea v-model="review"></textarea>
 		</div>
 
 	</div>
@@ -36,15 +36,20 @@
 <script>
 import CommonMap from '@/components/common/CommonInput.vue'
 import CommonDetail from '@/components/common/CommonInput.vue'
-import CommonInput from '@/components/common/CommonInput.vue'
 
 export default {
   components: {
 		CommonMap,
 		CommonDetail,
-		CommonInput
 	},
+	data() {
+		return {
+			review: {
 
+			},
+
+		}
+	}
 
 }
 </script>

@@ -4,6 +4,7 @@
       <h3>카카오 맵</h3>
       <div id="map" ref="map" style="width:500px;height:400px;"></div>
       <p>간간 : {{ time }}</p>
+      <p>주소 : {{ address }}</p>
       <h3>맵이존재하나요</h3>
   </div>
 </template>
@@ -18,7 +19,8 @@ export default {
   data() {
     return {
       points: [],
-      time: 0,
+      time: 3,
+      address: "",
     };
   },
   props: {
@@ -36,8 +38,8 @@ export default {
       // eslint를 사용한다면 kakao 변수가 선언되지 않았다고
       // 오류를 내기 때문에 아래 줄과 같이 전역변수임을 알려주어야 한다.
       /* global kakao */
-      script.addEventListener('load', () => {
-        kakao.maps.load(() => {
+      script.addEventListener('load', function() {
+        kakao.maps.load(function () {
           // 카카오맵 API가 로딩이 완료된 후 지도의 기본적인 세팅을 시작해야 한다.
           this.initMap()
         })
@@ -47,12 +49,13 @@ export default {
       // 이미 카카오맵 API가 로딩되어 있다면 바로 지도를 생성한다.
       this.initMap()
     }
+
+
   },
   methods: {
     initMap() {
       // this.$refs.map.innerText="33";
       
-
       var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
       mapOption = { 
           center: new kakao.maps.LatLng(37.50128800000034, 127.03528175393564), // 지도의 중심좌표
@@ -67,6 +70,10 @@ export default {
       var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
       var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
 
+      // 변수 설정
+      var setDistance = 31;
+      var path = {};
+      
       // 지도에 클릭 이벤트를 등록합니다
       // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
       kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
@@ -155,7 +162,7 @@ export default {
 
       // 지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
       // 선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
-      kakao.maps.event.addListener(map, 'rightclick', function (mouseEvent) {
+      kakao.maps.event.addListener(map, 'rightclick', path = function (mouseEvent) {
 
           // 지도 오른쪽 클릭 이벤트가 발생했는데 선을 그리고있는 상태이면
           if (drawingFlag) {
@@ -166,7 +173,7 @@ export default {
               
               // 마우스 클릭으로 그린 선의 좌표 배열을 얻어옵니다
               var path = clickLine.getPath();
-          
+
               // 선을 구성하는 좌표의 개수가 2개 이상이면
               if (path.length > 1) {
 
@@ -179,8 +186,13 @@ export default {
                   var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
                       content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
                       
-                  this.time = (distance / 67 | 0) % 60;
-                  console.log(this.time);
+                  ////////////////////////////////////////////
+                  // 거리 넣어주기
+                  console.log(setDistance);
+                  setDistance = (distance / 67 | 0) % 60;
+                  console.log(setDistance);
+
+                  ////////////////////////////////////////////
 
                   // 그려진 선의 거리정보를 지도에 표시합니다
                   showDistance(content, path[path.length-1]);  
@@ -198,6 +210,9 @@ export default {
               // 상태를 false로, 그리지 않고 있는 상태로 변경합니다
               drawingFlag = false;          
           }  
+
+          console.log(path);
+          return path;
       });    
 
       // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
@@ -331,18 +346,11 @@ export default {
 
           return content;
       }
+
     },
 
+  },
 
-
-
-
-
-
-
-
-
-  }
 
 
 
