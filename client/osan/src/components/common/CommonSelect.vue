@@ -7,8 +7,11 @@
         <div class="title">
           {{ route.title }}
         </div>
+        <div class="star">
+            <CommonRating :rating="route.rating"></CommonRating>
+        </div>
         <div class="detail">
-          <div class="rating">별점 : {{ route.rating }}</div>
+          
 
           <div class="date">작성일 : {{ route.updatedAt }}</div>
 
@@ -27,11 +30,13 @@
     <div v-if="viewSpot">
       <div>
         <div class="title">
-          {{ spot.title }}
+          {{ spot.spotName }}
+        </div>
+        <div class="star">
+            <CommonRating :rating="spot.rating"></CommonRating>
         </div>
         <div class="detail">
-          <div class="rating">별점 : {{ spot.rating }}</div>
-
+        
           <div class="date">작성일 : {{ spot.updatedAt }}</div>
 
           <div class="writer">작성자 : {{ spot.writer }}</div>
@@ -43,7 +48,7 @@
 
       <div>
         <CommonImage></CommonImage>
-        <common-button theme="select" value="산책로 이동하기"></common-button>
+        <common-button theme="select" value="경유지 이동하기"></common-button>
       </div>
     </div>
   </div>
@@ -52,9 +57,10 @@
 <script>
 import CommonButton from "./CommonButton.vue";
 import CommonImage from "./CommonImage.vue";
+import CommonRating from './CommonRating.vue';
 
 export default {
-  components: { CommonButton },
+  components: { CommonButton, CommonRating },
   name: "CommonSelect",
   comments: {
     CommonImage,
@@ -85,5 +91,15 @@ export default {
 .detail {
   display: flex;
   flex-direction: row;
+}
+
+.title {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.star{
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
