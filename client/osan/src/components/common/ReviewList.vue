@@ -1,9 +1,11 @@
 // 6. 리뷰 리스트 출력
 <template>
-  <div>
-    <review-select
+  <div class="review-container">
+    <div class="review-outer-box">
+      <review-select
       v-for="(review, index) in reviews" :key="index" :review="review"
       ></review-select>
+    </div>
   </div>
 </template>
 
@@ -27,4 +29,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.review-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0 30px 0;
+}
+.review-outer-box {
+  width: 80%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 30px 40px;
+}
+</style>

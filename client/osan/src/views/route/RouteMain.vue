@@ -79,13 +79,10 @@ export default {
   /* display: flex; */
   /* justify-content: center; */
 }
-
 .route-content {
   display: flex;
   justify-content: center;
 }
-
-
 .container {
   width: 500px;
   background-color: #f8fafd;
