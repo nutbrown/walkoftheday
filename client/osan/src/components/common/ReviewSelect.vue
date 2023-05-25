@@ -64,10 +64,11 @@ export default {
 </script>
 
 <style scoped>
+/* @import url(../../util/init.css); */
 .outer-box {
   padding: 10px;
   border-bottom: 1px solid #ccc;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: flex-start;

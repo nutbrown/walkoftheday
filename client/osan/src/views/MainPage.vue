@@ -1,25 +1,26 @@
 <template>
   <div>
-    <div class="main-up">
-      <div>
-        <div>오늘의 산책</div>
-        <common-list :routes="routes" :points="points" @updatePoints="updatePoints"></common-list>
+    <div class="outer-box">
+      <div class="route-content">
+        <div class="route-main-container">
+          <common-list :routes="routes" :points="points" @updatePoints="updatePoints"></common-list>
+        </div>
+        <div class="route-main-container">
+          <div class="map-outer-box">
+            <route-map :points="points" @updatePoints="updatePoints"></route-map>
+          </div>
+        </div>
       </div>
-      <div>
-        <route-map :points="points" @updatePoints="updatePoints"></route-map>
-      </div>
-    </div>
-    <div class="main-up">
-      <div>
-        <div>
+   
+      <div class="row-box">
+        <div class="route-bottom-container">
           <current-location></current-location>
         </div>
-        <div>
-          <current-weather></current-weather>
+
+        <div class="route-bottom-container">
+          <talk-list></talk-list>
         </div>
-      </div>
-      <div>
-        <talk-list></talk-list>
+
       </div>
     </div>
   </div>
@@ -28,7 +29,6 @@
 <script>
 import CommonList from "@/components/common/CommonList.vue";
 import CurrentLocation from "@/components/main/CurrentLocation.vue";
-import CurrentWeather from "@/components/main/CurrentWeather.vue";
 import TalkList from "@/components/main/TalkList.vue";
 import http from "@/util/axiosConfig.js"
 import RouteMap from '@/components/common/RouteMap.vue';
@@ -44,7 +44,6 @@ export default {
   components: {
     CommonList,
     CurrentLocation,
-    CurrentWeather,
     TalkList,
     RouteMap,
   },
@@ -67,9 +66,54 @@ export default {
 </script>
 
 <style scoped>
-.main-up {
+.outer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+.route-content {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.route-main-container {
+  width: 500px;
+  height: 400px;
+  background-color: #f8fafd;
+  border-radius: 3%;
+  padding: 1.3rem 0.5rem 0 0.5rem;
+  margin: 0 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.map-outer-box {
+  width: 480px;
+  height: 330px;
+  margin: 15px 0;
+}
+
+
+/*========== 하단 ==========*/
+.row-box {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
 }
+.route-bottom-container {
+  width: 500px;
+  height: 400px;
+  /* background-color: #f8fafd; */
+  border-radius: 3%;
+  padding: 1.3rem 0.5rem 0 0.5rem;
+  margin: 0 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
 </style>

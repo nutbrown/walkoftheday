@@ -1,11 +1,13 @@
 // 산책로 상세페이지
 <template>
-  <div>
+  <div class="route-detail-container">
     <div class="title-card">
-      <route-map :points="route.points"></route-map>
-      <div>
+      <div class="detail-map-box">
+        <route-map :points="route.points"></route-map>
+      </div>
+      <div class="detail-detail-box">
         <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
-        <button @click="openModal">후기 작성하기</button>
+        <button class="button-large" @click="openModal">후기 작성하기</button>
       </div>
       
     </div>
@@ -17,18 +19,15 @@
       </ul>
       <div class="content-title">산책로 한 마디</div>
       <div class="content-detail">{{ route.content }}</div>
-      <!-- <div class="content-title">경유지</div>
-      <div class="content-carousel">
-        <div></div>
-      </div> -->
       <div class="content-title">후기</div>
-      <review-list :reviews="reviews"></review-list>
-
+      <div class="review-box">
+        <review-list :reviews="reviews"></review-list>
+        <button class="button-large" @click="openModal">후기 작성하기</button>
+      </div>
 
 
       <!-- 후기 작성 모달 -->
       <div>
-        <button @click="openModal">Open Modal</button>
 
         <div v-if="showModal" class="modal">
           <div class="modal-content">
@@ -56,7 +55,7 @@
                   <textarea class="form-write-input" id="content" v-model="postData.content" required></textarea>
                 </div>
               </div>
-              <button @click="postReview">Submit</button>
+              <button class="button-middle" @click="postReview">후기 제출</button>
             </form>
           </div>
         </div>
@@ -186,16 +185,73 @@ export default {
 </script>
 
 <style>
+.route-detail-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* ============ 상단 카드 ============ */
 .title-card {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 70%;
+  height: 420px;
+  background-color: #f8fafd;
+  border-radius: 3%;
+  padding: 1.3rem 1rem;
+  margin: 0 10px;
+}
+.detail-map-box {
+  width: 60%;
+  height: 100%;
+}
+.detail-detail-box {
+  width: 40%;
+  height: 100%;
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* ============ 내용 ============ */
+.content {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.content-nav {
+  width: 100%;
+  float: left;
+  padding-bottom: 10px;
+  border-bottom: 2px solid gray;
+  margin-top: 30px;
 }
 .content-nav li{
   display: inline-block;
   margin: 0 10px;
 }
 
-/* ====== 모달 ====== */
+.review-box {
+  width: 100%;
+}
+.content-title {
+  margin: 40px 0 5px;
+  font-size: 20px;
+  font-weight: 450;
+}
+.content-detail {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* ============ 모달 ============ */
 .modal {
   /* display: none; */
   position: fixed;
@@ -268,7 +324,7 @@ export default {
   height: 60px;
 }
 
-/* ====== 별점 ====== */
+/* ============ 별점 ============ */
 .rating {
     unicode-bidi: bidi-override;
     direction: rtl;
@@ -292,7 +348,30 @@ export default {
 }
 
 
-
-
-
+/* ============ 버튼 ============ */
+.button-large {
+  cursor: pointer;
+  background-color: #bfcde8;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  width: 100%;
+  height: 3.5rem;
+  /* text-align: center; */
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.button-middle {
+  cursor: pointer;
+  background-color: gray;
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  width: 8rem;
+  height: 2rem;
+  /* text-align: center; */
+  font-size: 14px;
+}
 </style>
