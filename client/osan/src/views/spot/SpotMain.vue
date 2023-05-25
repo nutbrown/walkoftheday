@@ -1,5 +1,4 @@
 // spot 메인
-
 <template>
   <div class="outer-box">
     <common-title title="경유지" :property="routeProperty"></common-title>
@@ -7,7 +6,7 @@
       <common-list :spots="spots"></common-list>
       <div>
         <common-button value="경유지 등록하기" theme="move" @handle-click="handleBtn"></common-button>
-        <common-map></common-map>
+        <common-output-map></common-output-map>
       </div>
     </div>
 
@@ -21,7 +20,7 @@ import http from "@/util/axiosConfig.js"
 import commonTitle from "@/components/common/CommonTitle.vue";
 import CommonButton from "@/components/common/CommonButton.vue";
 import CommonList from "@/components/common/CommonList.vue";
-import CommonMap from "@/components/common/CommonMap.vue"
+import CommonOutputMap from "@/components/common/CommonOutputMap.vue"
 import ReviewList from "@/components/common/ReviewList.vue";
 
 
@@ -35,7 +34,7 @@ export default {
     };
   },
   components: {
-    commonTitle, CommonButton, CommonList, CommonMap, ReviewList
+    commonTitle, CommonButton, CommonList, CommonOutputMap, ReviewList
   },
   created() {
     http.get("/spot")
