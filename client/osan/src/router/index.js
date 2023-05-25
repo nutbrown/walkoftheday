@@ -38,7 +38,6 @@ const routes = [
   },
   {
     path: '/route',
-    name: 'routeView',
     component: RouteView,
     children: [
       {
@@ -60,7 +59,6 @@ const routes = [
   },
   {
     path: '/spot',
-    name: 'spotView',
     component: SpotView,
     children: [
       {

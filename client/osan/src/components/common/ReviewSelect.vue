@@ -1,6 +1,6 @@
 // 7. 리뷰 한 개 출력
 <template>
-  <div class="outer-box">
+<div class="outer-box hover-effect hover-effect:hover" @click="showDetail">
     <div>
       <common-rating :rating="rating"></common-rating>
       <span class="inner-header">{{ writer }}</span>
@@ -33,6 +33,15 @@ export default {
       createdAt: this.review.createdAt,
     };
   },
+  methods : {
+    showDetail() {
+      if(this.review.routeId) {
+        this.$router.push(`route/detail/${this.review.routeId}`);
+      } else {
+        this.$router.push(`spot/detail/${this.review.spotId}`);
+      }
+    },
+  }
 };
 </script>
 
@@ -50,5 +59,15 @@ export default {
 #target-name {
   font-size: 1.5rem;
 }
+
+  .hover-effect {
+    background-color: #eee;
+    color: #333;
+  }
+
+  .hover-effect:hover {
+    background-color: #333;
+    color: #eee;
+  }
 
 </style>

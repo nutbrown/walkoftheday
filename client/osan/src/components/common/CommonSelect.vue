@@ -76,10 +76,10 @@ export default {
   },
   methods: {
     goRouteDetail() {
-      this.$router.push(`route/detail?routeId=${this.route.routeId}`);
+      this.$router.push({path: `route/detail/${this.route.routeId}`});
     }, 
     goSpotDetail() {
-      this.$router.push(`spot /detail?spotId=${this.spot.spotId}`);
+      this.$router.push(`spot/detail/${this.spot.spotId}`);
     },
   }
 };
