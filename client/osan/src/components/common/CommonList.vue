@@ -3,10 +3,16 @@
 <template>
   <div class="container">
     <div v-if="routes">
-      <div v-for="(route, index) in routes" :key="index">
-        <common-select :route="route" :viewRoute="true" :viewSpot="false">
-        </common-select>
-      </div>
+      <common-select
+        v-for="(route, index) in routes"
+        :key="index"
+        class="hover-effect hover-effect:hover"
+        :route="route"
+        :viewRoute="true"
+        :viewSpot="false"
+        @updateData="handleClick(route.points)"
+      >
+      </common-select>
     </div>
 
     <div v-if="spots">
@@ -30,6 +36,12 @@ export default {
     },
   },
   components: { CommonSelect },
+  methods: {
+    handleClick(points) {
+      console.log(points);
+      this.$emit('updatePoints', points);
+    },
+  },
 };
 </script>
 
@@ -40,5 +52,15 @@ export default {
   border-radius: 3%;
   padding: 1rem;
   margin-left: 1rem;
+}
+
+.hover-effect {
+  background-color: #eee;
+  color: #333;
+}
+
+.hover-effect:hover {
+  background-color: #333;
+  color: #eee;
 }
 </style>

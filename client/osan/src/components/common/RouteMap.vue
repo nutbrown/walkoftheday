@@ -2,6 +2,7 @@
   <div>
     <h3>산책로 출력 맵</h3>
     <div id="map2" ref="map" style="width: 500px; height: 400px"></div>
+    <div>{{ points }}</div>
   </div>
 </template>
 
@@ -11,7 +12,7 @@ export default {
     return {};
   },
   props: {
-    points: [],
+    points: null,
   },
   mounted() {
     if (!window.kakao || !window.kakao.maps) {
@@ -50,58 +51,56 @@ export default {
       var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
 
       // 지도에 클릭 이벤트를 등록합니다
-      if(this.points != []) {
-for (let i = 0; i < this.points.length; i++) {
-        console.log(this.points[i]);
-        var clickPosition = this.points[i];
+      if (this.points != null) {
+        for (let i = 0; i < this.points.length; i++) {
+          console.log(this.points[i]);
+          var clickPosition = this.points[i];
 
-        // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
-        if (!drawingFlag) {
-          // 상태를 true로, 선이 그리고있는 상태로 변경합니다
-          drawingFlag = true;
+          // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
+          if (!drawingFlag) {
+            // 상태를 true로, 선이 그리고있는 상태로 변경합니다
+            drawingFlag = true;
 
-          // 지도 위에 선이 표시되고 있다면 지도에서 제거합니다
-          deleteClickLine();
+            // 지도 위에 선이 표시되고 있다면 지도에서 제거합니다
+            deleteClickLine();
 
-          // 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
-          deleteDistnce();
+            // 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
+            deleteDistnce();
 
-          // 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
-          deleteCircleDot();
+            // 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
+            deleteCircleDot();
 
-          // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
-          clickLine = new kakao.maps.Polyline({
-            map: map, // 선을 표시할 지도입니다
-            path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
-            strokeWeight: 3, // 선의 두께입니다
-            strokeColor: "#db4040", // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-            strokeStyle: "solid", // 선의 스타일입니다
-          });
+            // 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
+            clickLine = new kakao.maps.Polyline({
+              map: map, // 선을 표시할 지도입니다
+              path: [clickPosition], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+              strokeWeight: 3, // 선의 두께입니다
+              strokeColor: "#db4040", // 선의 색깔입니다
+              strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+              strokeStyle: "solid", // 선의 스타일입니다
+            });
 
-          // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
+            // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
 
-          // 클릭한 지점에 대한 정보를 지도에 표시합니다
-          displayCircleDot(clickPosition, 0);
-        } else {
-          // 선이 그려지고 있는 상태이면
+            // 클릭한 지점에 대한 정보를 지도에 표시합니다
+            displayCircleDot(clickPosition, 0);
+          } else {
+            // 선이 그려지고 있는 상태이면
 
-          // 그려지고 있는 선의 좌표 배열을 얻어옵니다
-          var path = clickLine.getPath();
+            // 그려지고 있는 선의 좌표 배열을 얻어옵니다
+            var path = clickLine.getPath();
 
-          // 좌표 배열에 클릭한 위치를 추가합니다
-          path.push(clickPosition);
+            // 좌표 배열에 클릭한 위치를 추가합니다
+            path.push(clickPosition);
 
-          // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
-          clickLine.setPath(path);
+            // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
+            clickLine.setPath(path);
 
-          var distance = Math.round(clickLine.getLength());
-          displayCircleDot(clickPosition, distance);
+            var distance = Math.round(clickLine.getLength());
+            displayCircleDot(clickPosition, distance);
+          }
         }
       }
-
-      }
-      
 
       // 클릭으로 그려진 선을 지도에서 제거하는 함수입니다
       function deleteClickLine() {
