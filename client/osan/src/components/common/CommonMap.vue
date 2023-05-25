@@ -66,10 +66,8 @@ export default {
       var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
       var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
 
-      // 변수 설정
-      var setDistance = 31;
-      var path = {};
 
+      
       // 지도에 클릭 이벤트를 등록합니다
       // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
       kakao.maps.event.addListener(map, "click", function (mouseEvent) {
@@ -181,14 +179,7 @@ export default {
 
               var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
                 content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
-
-              ////////////////////////////////////////////
-              // 거리 넣어주기
-              console.log(setDistance);
-              setDistance = ((distance / 67) | 0) % 60;
-              console.log(setDistance);
-
-              ////////////////////////////////////////////
+              
 
               // 그려진 선의 거리정보를 지도에 표시합니다
               showDistance(content, path[path.length - 1]);
@@ -204,9 +195,9 @@ export default {
             drawingFlag = false;
           }
 
-          console.log(path);
           this.points = path;
-          console.log(this.points);
+          this.time = (distance / 67) | 0;
+          this.sendDataToParent();
           return path;
         })
       );
@@ -356,6 +347,10 @@ export default {
 
         return content;
       }
+    },
+    sendDataToParent() {
+      this.$emit('getPoints', this.points);
+      this.$emit('getTime', this.time);
     },
   },
 };
