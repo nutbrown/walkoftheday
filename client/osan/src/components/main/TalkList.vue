@@ -20,9 +20,13 @@
       <common-button value="등록" theme="small" @handle-click="handleBtn"></common-button>
     </div>
 
-    <div v-for="(talk, index) in talks" :key="index" class="talk-list-box">
-      <TalkSelect :talk="talk"></TalkSelect>
+    <div class="talk-list-box">
+      <div v-for="(talk, index) in talks" :key="index" class="talk-list-select">
+        <TalkSelect :talk="talk"></TalkSelect>
+      </div>
     </div>
+    <br><br><br><br>
+
   </div>
 </template>
 
@@ -85,9 +89,9 @@ export default {
 </script>
 
 <style scoped>
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 .talk-container {
   display: flex;
   flex-direction: column;
@@ -132,6 +136,9 @@ export default {
   margin-top: 10px;
   border: 1px solid gray;
   border-radius: 10px;
+  padding: 0 7px;
 }
-
+.talk-list-select {
+  margin: 10px 0;
+}
 </style>

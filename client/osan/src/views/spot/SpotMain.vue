@@ -1,28 +1,35 @@
-// spot 메인
-
+// 경유지 메인
 <template>
   <div class="outer-box">
     <common-title title="경유지" :property="routeProperty"></common-title>
+    <br>
     <div class="route-content">
-      <common-list :spots="spots"></common-list>
-      <div>
-        <common-button value="경유지 등록하기" theme="move" @handle-click="handleBtn"></common-button>
-        <common-map></common-map>
+      <div class="route-main-container">
+        <common-list :spots="spots"></common-list>
+      </div>
+      <div class="route-main-container">
+        <common-button value="경유지 등록하기 ➝" theme="extra-big" @handle-click="handleBtn"></common-button>
+        <div class="map-outer-box">
+          <route-map :points="points" @updatePoints="updatePoints"></route-map>
+        </div>
       </div>
     </div>
 
     <common-title title="후기" :property="reviewProperty"></common-title>
-    <review-list :reviews="reviews"></review-list>
+    <br>
+    <div class="review-box">
+      <review-list :reviews="reviews"></review-list>
+    </div>
   </div>
 </template>
 
 <script>
-import http from "@/util/axiosConfig.js"
-import commonTitle from "@/components/common/CommonTitle.vue";
-import CommonButton from "@/components/common/CommonButton.vue";
+import CommonTitle from "@/components/common/CommonTitle.vue";
 import CommonList from "@/components/common/CommonList.vue";
-import CommonMap from "@/components/common/CommonMap.vue"
 import ReviewList from "@/components/common/ReviewList.vue";
+import CommonButton from "@/components/common/CommonButton.vue";
+import http from "@/util/axiosConfig.js"
+import RouteMap from "@/components/common/RouteMap.vue";
 
 
 export default {
@@ -35,7 +42,11 @@ export default {
     };
   },
   components: {
-    commonTitle, CommonButton, CommonList, CommonMap, ReviewList
+    CommonTitle,
+    CommonList,
+    ReviewList,
+    CommonButton,
+    RouteMap,
   },
   created() {
     http.get("/spot")
@@ -65,10 +76,33 @@ export default {
 </script>
 
 <style scoped>
-.route-content {
-	display: flex;
-	justify-content: space-evenly;
-	/* width: 80%; */
+.outer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+.route-content {
+  display: flex;
+  justify-content: center;
+}
+.route-main-container {
+  width: 500px;
+  height: 600px;
+  background-color: #f8fafd;
+  border-radius: 3%;
+  padding: 1.3rem 0.5rem 0 0.5rem;
+  margin: 0 10px;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.map-outer-box {
+  width: 480px;
+  height: 530px;
+  margin: 15px 0;
+}
+.review-box {
+  width: 1050px;
+}
 </style>

@@ -14,12 +14,18 @@
       >
       </common-select>
     </div>
-
+    
     <div v-if="spots">
-      <div v-for="(spot, index) in spots" :key="index">
-        <common-select :spot="spot" :viewRoute="false" :viewSpot="true">
-        </common-select>
-      </div>
+      <common-select
+        v-for="(spot, index) in spots"
+        :key="index"
+        class="hover-effect hover-effect:hover"
+        :spot="spot"
+        :viewRoute="false"
+        :viewSpot="true"
+        @updateData="handleClick(spot.points)"
+      >
+      </common-select>
     </div>
   </div>
 </template>
@@ -49,7 +55,7 @@ export default {
   width: 500px;
   background-color: #f8fafd;
   border-radius: 3%;
-  /* padding: 1rem 0; */
+  padding: 0 10px; /* 나중에 추가 */
   /* margin-left: 1rem; */
 }
 

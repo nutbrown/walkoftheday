@@ -15,34 +15,32 @@
           </div>
         </div>
       </div>
-
       <div class="inner-square inner-content flex-box-row">
         <div class="content">{{ route.content }}</div>
         <common-button theme="middle" value="산책로 이동하기" @handle-click="goRouteDetail"></common-button>
       </div>
-
     </div>
+    
 
     <!-- 경유지 -->
-    <div v-if="viewSpot">
-      <div>
+    <div v-if="viewSpot" class="select-container" @click="updatePoints">
+      <div class="inner-square inner-title flex-box-row">
         <div class="title">
           {{ spot.spotName }}
         </div>
-        <div class="star">
-            <CommonRating :rating="spot.rating"></CommonRating>
-        </div>
-        <div class="detail">
-          <div class="date">작성일 : {{ spot.updatedAt }}</div>
+        <div class="flex-box-row">
           <div class="writer">작성자 : {{ spot.writer }}</div>
+          <div class="star">
+            <CommonRating :rating="spot.rating"></CommonRating>
+          </div>
         </div>
-        <div class="content">
-          {{ spot.content }}
-        </div>
+      </div>
+      <div class="inner-square inner-content flex-box-row">
+        <div class="content">{{ spot.content }}</div>
         <common-button theme="middle" value="경유지 이동하기" @handle-click="goSpotDetail"></common-button>
       </div>
-
     </div>
+
   </div>
 </template>
 
