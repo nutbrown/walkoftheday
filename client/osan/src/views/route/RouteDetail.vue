@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="title-card">
-      <common-map></common-map>
+      <route-map :points="route.points"></route-map>
       <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
     </div>
     <div class="content">
@@ -45,14 +45,14 @@
                 </div>
                 <div class="modal-container-box">
                   <label for="writer" class="form-guide-detail">작성자</label>
-                  <input class="form-write-input" type="text" id="writer" v-model="writer" required>
+                  <input class="form-write-input" type="text" id="writer" v-model="postData.writer" required>
                 </div>
                 <div class="modal-container-box">
                   <label for="content" class="form-guide-detail">후기 내용 </label>
-                  <textarea class="form-write-input" id="content" v-model="content" required></textarea>
+                  <textarea class="form-write-input" id="content" v-model="postData.content" required></textarea>
                 </div>
               </div>
-              <button type="submit">Submit</button>
+              <button @click="postReview">Submit</button>
             </form>
           </div>
         </div>
@@ -63,14 +63,14 @@
 </template>
 
 <script>
-import CommonMap from "@/components/common/CommonMap.vue";
+import RouteMap from "@/components/common/RouteMap.vue";
 import CommonDetail from "@/components/common/CommonDetail.vue";
 import ReviewList from "@/components/common/ReviewList.vue";
 import http from "@/util/axiosConfig.js"
 
 export default {
   components: {
-    CommonMap,
+    RouteMap,
     CommonDetail,
     ReviewList
   },
@@ -80,11 +80,15 @@ export default {
       reviews: [],
       review: "",
       params: null,
-
       showModal: false,
       writer: "",
       content: "",
-      selectedRating: 0
+      selectedRating: 0,
+      postData: {
+        writer : "",
+        content : "",
+        rating : 0,
+      }
     };
   },
   created() {
@@ -97,6 +101,28 @@ export default {
 
   },
   methods : {
+    postReview() {
+      if (
+        this.postData.writer.length == 0 ||
+        this.postData.content.length == 0 ||
+        this.postData.rating ===0
+      ) {
+        alert("리뷰 모든 칸을 채워주세요.");
+      } else {
+        http
+          .post(`/review/1/${this.params}`, this.postData)
+          .then((response) => {
+            console.log(response.data);
+            this.postData.writer = "";
+            this.postData.content = "";
+            this.getReviews();
+            this.getRoute();
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
     getRoute() {
       http.get(`/route/${this.params}`)
       .then((response) => {
@@ -115,6 +141,7 @@ export default {
         console.error(error);
       })
     },
+
     
     openModal() {
       this.showModal = true;
@@ -124,18 +151,17 @@ export default {
     },
     submitModal() {
       // Perform your desired actions with the writer and content data
-      console.log("Writer:", this.writer);
-      console.log("Content:", this.content);
-
+    
       // Close the modal
       this.showModal = false;
     },
 
     rateStar(rating) {
-        this.selectedRating = rating;
+        this.postData.rating = rating;
         const stars = document.querySelectorAll('.rating > span');
         stars.forEach((star, index) => {
-            if (index > rating) {
+            let temp = 5 - index;
+            if (temp <= rating) {
                 star.classList.add('checked');
             } else {
                 star.classList.remove('checked');
@@ -255,10 +281,8 @@ export default {
 }
 .rating > span:hover:before,
 .rating > span:hover ~ span:before,
-/* .rating > span.checked:before,
-.rating > span.checked ~ span:before */
-
-.rating > span.checked{
+.rating > span.checked:before,
+.rating > span.checked ~ span:before{
     content: "\2605";
     position: absolute;
     color: gold;
