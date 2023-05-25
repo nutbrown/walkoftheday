@@ -8,8 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 산책로 등록-->
     <!-- views rating createdAt updatedAt -->
     <insert id="insertRoute" parameterType="Route">
-        INSERT INTO route (title, content, writer, points, time, image)
-        VALUES (#{title}, #{content}, #{writer}, #{points}, ${time}, ${image})
+        INSERT INTO route (title, content, writer, points, time)
+        VALUES (#{title}, #{content}, #{writer}, #{points}, ${time})
     </insert>
 
     <!-- 산책로 전체 리스트-->

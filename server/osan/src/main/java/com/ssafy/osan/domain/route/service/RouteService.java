@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RouteService {
 
-    int writeRoute(Route route, MultipartFile image);
+    int writeRoute(Route route);
 
     List<Route> getRouteList();
 
