@@ -6,7 +6,7 @@
         <common-list :routes="routes" :points="points" @updatePoints="updatePoints"></common-list>
       </div>
       <div>
-        <common-output-map :points="points" @updatePoints="updatePoints"></common-output-map>
+        <route-map :points="points" @updatePoints="updatePoints"></route-map>
       </div>
     </div>
     <div class="main-up">
@@ -31,7 +31,7 @@ import CurrentLocation from "@/components/main/CurrentLocation.vue";
 import CurrentWeather from "@/components/main/CurrentWeather.vue";
 import TalkList from "@/components/main/TalkList.vue";
 import http from "@/util/axiosConfig.js"
-import CommonOutputMap from '@/components/common/CommonOutputMap.vue';
+import RouteMap from '@/components/common/RouteMap.vue';
 
 export default {
 
@@ -46,7 +46,7 @@ export default {
     CurrentLocation,
     CurrentWeather,
     TalkList,
-    CommonOutputMap,
+    RouteMap,
   },
   created() {
     http.get("/route")

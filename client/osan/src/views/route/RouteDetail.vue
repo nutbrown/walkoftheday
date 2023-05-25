@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="title-card">
-      <common-output-map :points="route.points"></common-output-map>
+      <route-map :points="route.points"></route-map>
       <div>
         <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
         <button @click="openModal">후기 작성하기</button>
@@ -67,14 +67,14 @@
 </template>
 
 <script>
-import CommonOutputMap from "@/components/common/CommonOutputMap.vue";
+import RouteMap from "@/components/common/RouteMap.vue";
 import CommonDetail from "@/components/common/CommonDetail.vue";
 import ReviewList from "@/components/common/ReviewList.vue";
 import http from "@/util/axiosConfig.js"
 
 export default {
   components: {
-    CommonOutputMap,
+    RouteMap,
     CommonDetail,
     ReviewList
   },
