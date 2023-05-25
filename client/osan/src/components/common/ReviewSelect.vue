@@ -49,9 +49,14 @@ export default {
   methods : {
     showDetail() {
       if(this.review.routeId) {
-        this.$router.push(`route/detail/${this.review.routeId}`);
+
+        if(this.$route.path === `/route`) {
+          this.$router.push(`route/detail/${this.review.routeId}`);
+        }
       } else {
-        this.$router.push(`spot/detail/${this.review.spotId}`);
+        if(this.$route.path === `/spot`) {
+          this.$router.push(`spot/detail/${this.review.spotId}`);
+        }
       }
     },
   }
