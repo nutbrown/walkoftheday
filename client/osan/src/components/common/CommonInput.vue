@@ -22,11 +22,11 @@ export default {
     },
     inputText: {
       type: Boolean,
-      required: true,
+      required: false,
     },
     inputImage: {
       type: Boolean,
-      required: true,
+      required: false,
     },
   },
 };

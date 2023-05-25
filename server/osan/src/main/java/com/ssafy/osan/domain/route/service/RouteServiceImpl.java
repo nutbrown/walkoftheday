@@ -21,11 +21,11 @@ public class RouteServiceImpl implements RouteService {
 
     // 산책로 삽입
     @Override
-    public int writeRoute(Route route, MultipartFile file) {
+    public int writeRoute(Route route) {
 
         // imageId를 반환해서 setImage
         // imgId 가 0이면 이미지가 없음
-        route.setImage(fileManagementService.uploadImage(file));
+//        route.setImage(fileManagementService.uploadImage(file));
         return routeDao.insertRoute(route);
     }
 

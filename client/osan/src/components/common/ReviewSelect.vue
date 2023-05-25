@@ -1,13 +1,26 @@
 // 7. 리뷰 한 개 출력
 <template>
-  <div class="outer-box">
-    <div>
-      <common-rating :rating="rating"></common-rating>
-      <span class="inner-header">{{ writer }}</span>
-      <span class="inner-header">{{  createdAt }}</span>
-    </div>
-    <div id="target-name">{{ targetName }}</div>
-    <div id="content">{{  content }}</div>
+  <div class="outer-box hover-effect hover-effect:hover" @click="showDetail">
+    <div class="review-list">
+      <div class="review-list-top">
+        <div>
+          <common-rating :rating="rating"></common-rating>
+          <span class="review-nickname">{{ writer }}</span>
+        </div>
+        <div>
+          <strong>작성일 : </strong>
+          <span class="review-option">
+            {{ review.regDate }}
+          </span>
+        </div>
+      </div>
+      <div class="review-list-bottom">
+        <p class="review-content">
+          {{ content }}
+        </p>
+      </div>
+    </div>  
+
   </div>
 </template>
 
@@ -33,22 +46,80 @@ export default {
       createdAt: this.review.createdAt,
     };
   },
+  methods : {
+    showDetail() {
+      if(this.review.routeId) {
+
+        if(this.$route.path === `/route`) {
+          this.$router.push(`route/detail/${this.review.routeId}`);
+        }
+      } else {
+        if(this.$route.path === `/spot`) {
+          this.$router.push(`spot/detail/${this.review.spotId}`);
+        }
+      }
+    },
+  }
 };
 </script>
 
 <style scoped>
+/* @import url(../../util/init.css); */
 .outer-box {
   padding: 10px;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hover-effect:hover {
+  background-color: #eee;
+  color: #333;
+}
+
+.review-list {
   width: 100%;
+}
+.review-list-top {
+  display: flex;
+	justify-content: space-between;
+}
+.review-list-bottom {
+  display: flex;
+	justify-content: space-between;
+}
 
-}
-.inner-header {
-  margin: 0 0 0 10px;
-}
-#target-name {
-  font-size: 1.5rem;
+.review-nickname {
+    font-size: 25px;
+    font-weight: 500;
+    color: #152545;
+    margin: 0 10px;
 }
 
+.review-list strong{
+  font-size: 13px;
+  font-weight: 400;
+  color: #585858;
+}
+.review-option {
+    font-size: 13px;
+    font-weight: 400;
+    color: #585858;
+}
+.review-content {
+    font-size: 16px;
+    margin: 10px 0;
+    font-weight: 400;
+}
+.review-date {
+    font-size: 12px;
+    font-weight: 400;
+    color: grey;
+}
+.review-content-detail {
+    font-size: 13px;
+    font-weight: 350;
+    line-height: 30px;
+}
 </style>

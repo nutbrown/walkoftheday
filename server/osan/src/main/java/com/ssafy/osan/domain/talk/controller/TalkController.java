@@ -20,7 +20,7 @@ public class TalkController {
 
     // 산책 한마디 작성
     @PostMapping("")
-    public ResponseEntity<?> writeTalk(Talk talk) {
+    public ResponseEntity<?> writeTalk(@RequestBody Talk talk) {
 
         int result = talkService.writeTalk(talk);
 

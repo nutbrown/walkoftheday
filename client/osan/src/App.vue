@@ -1,12 +1,25 @@
 <template>
   <div id="app">
+    <HeaderNav></HeaderNav>
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">홈</router-link> |
+      <router-link to="/route">산책로</router-link> |
+      <router-link to="/spot">경유지</router-link>
     </nav>
-    <router-view/>
+    <hr />
+
+    <router-view />
   </div>
 </template>
+
+<script>
+import HeaderNav from "./components/common/HeaderNav.vue";
+export default {
+  components: {
+    HeaderNav,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -22,11 +35,13 @@ nav {
 }
 
 nav a {
+  font-size: 1.2rem;
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #3056a0;
 }
 </style>

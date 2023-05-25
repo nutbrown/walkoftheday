@@ -18,5 +18,10 @@ export default {
 </script>
 
 <style>
-
+h2 {
+	margin: 40px 0 10px 0;
+}
+p {
+	margin: 0;
+}
 </style>

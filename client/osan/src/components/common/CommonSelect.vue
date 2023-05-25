@@ -2,63 +2,55 @@
 
 <template>
   <div>
-    <div v-if="viewRoute" class="container">
-      <div>
+    <!-- 산책로 -->
+    <div v-if="viewRoute" class="select-container" @click="updatePoints">
+      <div class="inner-square inner-title flex-box-row">
         <div class="title">
           {{ route.title }}
         </div>
-        <div class="detail">
-          <div class="rating">별점 : {{ route.rating }}</div>
-
-          <div class="date">작성일 : {{ route.updatedAt }}</div>
-
+        <div class="flex-box-row">
           <div class="writer">작성자 : {{ route.writer }}</div>
-        </div>
-        <div class="content">
-          {{ route.content }}
+          <div class="star">
+              <CommonRating :rating="route.rating"></CommonRating>
+          </div>
         </div>
       </div>
-
-      <div>
-        <CommonImage></CommonImage>
-        <common-button theme="select" value="산책로 이동하기"></common-button>
+      <div class="inner-square inner-content flex-box-row">
+        <div class="content">{{ route.content }}</div>
+        <common-button theme="middle" value="산책로 이동하기" @handle-click="goRouteDetail"></common-button>
       </div>
     </div>
-    <div v-if="viewSpot">
-      <div>
+    
+
+    <!-- 경유지 -->
+    <div v-if="viewSpot" class="select-container" @click="updatePoints">
+      <div class="inner-square inner-title flex-box-row">
         <div class="title">
-          {{ spot.title }}
+          {{ spot.spotName }}
         </div>
-        <div class="detail">
-          <div class="rating">별점 : {{ route.rating }}</div>
-
-          <div class="date">작성일 : {{ route.updatedAt }}</div>
-
-          <div class="writer">작성자 : {{ route.writer }}</div>
-        </div>
-        <div class="content">
-          {{ route.content }}
+        <div class="flex-box-row">
+          <div class="writer">작성자 : {{ spot.writer }}</div>
+          <div class="star">
+            <CommonRating :rating="spot.rating"></CommonRating>
+          </div>
         </div>
       </div>
-
-      <div>
-        <CommonImage></CommonImage>
-        <common-button theme="select" value="산책로 이동하기"></common-button>
+      <div class="inner-square inner-content flex-box-row">
+        <div class="content">{{ spot.content }}</div>
+        <common-button theme="middle" value="경유지 이동하기" @handle-click="goSpotDetail"></common-button>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
 import CommonButton from "./CommonButton.vue";
-import CommonImage from "./CommonImage.vue";
+import CommonRating from './CommonRating.vue';
 
 export default {
-  components: { CommonButton },
+  components: { CommonButton, CommonRating },
   name: "CommonSelect",
-  comments: {
-    CommonImage,
-  },
   props: {
     viewSpot: {
       type: Boolean,
@@ -73,17 +65,45 @@ export default {
       type: Object,
     },
   },
+  methods: {
+    goRouteDetail() {
+      this.$router.push({path: `route/detail/${this.route.routeId}`});
+    }, 
+    goSpotDetail() {
+      this.$router.push(`spot/detail/${this.spot.spotId}`);
+    },
+    updatePoints() {
+      this.$emit('updateData');
+    }
+  }
 };
 </script>
 
 <style scoped>
-.container {
+.select-container {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  /* border: 0.5px solid #e9ecf1; */
+
+}
+.flex-box-row {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+}
+.inner-square {
+  border-radius: 5px;
+  background-color: #e9ecf1;
+  margin: 5px;
+  padding: 10px;
+}
+.title {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.writer {
+  margin-right: 12px;
 }
 
-.detail {
-  display: flex;
-  flex-direction: row;
-}
 </style>

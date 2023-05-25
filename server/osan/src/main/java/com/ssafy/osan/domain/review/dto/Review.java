@@ -12,8 +12,17 @@ public class Review {
         private int rating;
         private Date createdAt;
         private Date updatedAt;
+        private String regDate;
 
         public Review() {
+        }
+
+        public String getRegDate() {
+                return regDate;
+        }
+
+        public void setRegDate(String regDate) {
+                this.regDate = regDate;
         }
 
         public int getReviewId() {
