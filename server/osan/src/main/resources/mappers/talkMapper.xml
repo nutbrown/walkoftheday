@@ -1,7 +1,20 @@
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!DOCTYPE mapper [
+        <!ELEMENT mapper (insert|select|delete)*>
+        <!ATTLIST mapper
+                namespace CDATA #REQUIRED>
+        <!ELEMENT insert (#PCDATA)>
+        <!ATTLIST insert
+                id CDATA #REQUIRED
+                parameterType CDATA #REQUIRED>
+        <!ELEMENT select (#PCDATA)>
+        <!ATTLIST select
+                id CDATA #REQUIRED
+                resultType CDATA #REQUIRED>
+        <!ELEMENT delete (#PCDATA)>
+        <!ATTLIST delete
+                id CDATA #REQUIRED
+                parameterType CDATA #REQUIRED>
+        ]>
 <mapper namespace="com.ssafy.osan.domain.talk.dao.TalkDao">
 
     <!-- 산책 한마디 등록-->
@@ -12,8 +25,9 @@
 
     <!-- 산책 한마디 전체 리스트-->
     <select id="selectAllTalk" resultType="Talk">
-        SELECT talkId, writer, content, date_format(createdAt, '%y-%m-%d %H:%i:%s') as createdAt
+        SELECT talkId, writer, content, date_format(createdAt, '%y-%m-%d %H:%i:%s') as regDate
         FROM talk;
+
     </select>
 
 
