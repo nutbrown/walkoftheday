@@ -11,9 +11,7 @@ export default {
     return {};
   },
   props: {
-    points: {
-
-    },
+    points: {},
   },
   mounted() {
     if (!window.kakao || !window.kakao.maps) {
@@ -38,18 +36,40 @@ export default {
     }
   },
   watch: {
-    points: function() {
+    points: function () {
       // Props 값이 변화할 때 실행되는 메소드
-      
+
       this.initMap();
       // 추가적인 로직을 실행할 수 있습니다.
-    }
+    },
   },
   methods: {
     initMap() {
+      var lat = 37.50128800000034;
+      var lng = 127.03528175393564;
+
+      if (this.points != null) {
+        const pointsA = JSON.parse(this.points);
+        let maxLat = 0;
+        let minLat = 1000;
+        let maxLng = 0;
+        let minLng = 1000;
+        for (let i = 0; i < pointsA.length; i++) {
+          let tempLng = pointsA[i].La;
+          let tempLat = pointsA[i].Ma; 
+
+          maxLat = maxLat > tempLat ? maxLat : tempLat;
+          minLat = minLat < tempLat ? minLat : tempLat;
+          maxLng = maxLng > tempLng ? maxLng : tempLng;
+          minLng = minLng < tempLng ? minLng : tempLng;
+        }
+        
+        lat = (maxLat + minLat) / 2;
+        lng = (maxLng + minLng) / 2;
+      }
       var mapContainer = document.getElementById("map2"), // 지도를 표시할 div
         mapOption = {
-          center: new kakao.maps.LatLng(37.50128800000034, 127.03528175393564), // 지도의 중심좌표
+          center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
           level: 3, // 지도의 확대 레벨
         };
 
@@ -60,12 +80,11 @@ export default {
       var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
       var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
 
-      // 지도에 클릭 이벤트를 등록합니다
       if (this.points != null && this.points != "") {
         const pointsA = JSON.parse(this.points);
+
         for (let i = 0; i < pointsA.length; i++) {
-  
-          var temp = new kakao.maps.LatLng;
+          var temp = new kakao.maps.LatLng();
           temp.La = pointsA[i].La;
           temp.Ma = pointsA[i].Ma;
 
