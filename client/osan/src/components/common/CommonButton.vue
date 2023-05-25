@@ -34,7 +34,32 @@ export default {
           "--text": "white",
           "--width": "5rem",
           "--height": "3rem",
+          "--radius": "1.5rem",
+          "--fontsize": "1rem",
         };
+      // 적당히 중간 버튼
+      } else if(this.theme === "middle") {
+        return {
+          "--color": "gray",
+           "--border": "none",
+           "--text": "white",
+           "--width": "8rem",
+           "--height": "2rem",
+           "--radius": "0.3rem",
+           "--fontsize": "14px",
+        }
+      // 커다란 네모 버튼
+      } else if(this.theme === "extra-big") {
+        return {
+          "--color": "#bfcde8",
+           "--border": "none",
+           "--text": "white",
+           "--width": "480px",
+           "--height": "3.5rem",
+           "--radius": "0.5rem",
+           "--fontsize": "1.7rem",
+           "--fontweight": "500",
+        }
       } else {
         return {
           "--color": "black",
@@ -42,6 +67,8 @@ export default {
           "--text": "white",
           "--width": "5rem",
           "--height": "3rem",
+          "--radius": "1.5rem",
+
         };
       }
       // 위치 수정하기, 산책 한마디, 후기 등록
@@ -62,11 +89,14 @@ button {
   background-color: var(--color);
   padding: 0.5rem 0.75rem 0.5rem 0.75rem;
   border: var(--border);
-  border-radius: 1.5rem;
+  border-radius: var(--radius);
   color: var(--text);
   width: var(--width);
   height: var(--height);
   text-align: center;
+  
+  font-size: var(--fontsize);
+  font-weight: var(--fontweight);
 }
 
 button:hover {

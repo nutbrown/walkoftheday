@@ -3,7 +3,7 @@
 <template>
   <div>
     <!-- 산책로 -->
-    <div v-if="viewRoute" class="container" @click="updatePoints">
+    <div v-if="viewRoute" class="select-container" @click="updatePoints">
       <div class="inner-square inner-title flex-box-row">
         <div class="title">
           {{ route.title }}
@@ -18,7 +18,7 @@
 
       <div class="inner-square inner-content flex-box-row">
         <div class="content">{{ route.content }}</div>
-        <common-button theme="select" value="산책로 이동하기" @handle-click="goRouteDetail"></common-button>
+        <common-button theme="middle" value="산책로 이동하기" @handle-click="goRouteDetail"></common-button>
       </div>
 
     </div>
@@ -33,15 +33,13 @@
             <CommonRating :rating="spot.rating"></CommonRating>
         </div>
         <div class="detail">
-        
           <div class="date">작성일 : {{ spot.updatedAt }}</div>
-
           <div class="writer">작성자 : {{ spot.writer }}</div>
         </div>
         <div class="content">
           {{ spot.content }}
         </div>
-        <common-button theme="select" value="경유지 이동하기" @handle-click="goSpotDetail"></common-button>
+        <common-button theme="middle" value="경유지 이동하기" @handle-click="goSpotDetail"></common-button>
       </div>
 
     </div>
@@ -84,7 +82,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.select-container {
   background-color: white;
   border-radius: 5px;
   padding: 5px;
@@ -105,6 +103,9 @@ export default {
 .title {
   font-weight: 700;
   font-size: 1.2rem;
+}
+.writer {
+  margin-right: 12px;
 }
 
 </style>

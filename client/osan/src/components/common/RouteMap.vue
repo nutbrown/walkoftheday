@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h3>산책로 출력 맵</h3>
-    <div id="map2" ref="map" style="width: 500px; height: 400px"></div>
+  <div class="map-container">
+    <!-- <h3>산책로 출력 맵</h3> -->
+    <div id="map2" ref="map" style="width: 480px; height: 500px"></div>
   </div>
 </template>
 
@@ -207,4 +207,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.map-container {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+}
+</style>
