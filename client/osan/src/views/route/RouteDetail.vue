@@ -22,26 +22,36 @@
 
 
 
-
+      <!-- 후기 작성 모달 -->
       <div>
         <button @click="openModal">Open Modal</button>
 
         <div v-if="showModal" class="modal">
           <div class="modal-content">
             <span class="close" @click="closeModal">&times;</span>
-            <h2>Modal Title</h2>
-
+            <h2>후기 작성</h2>
+            <p>산책로에 대한 솔직한 후기를 작성해주세요.</p>
             <form @submit.prevent="submitModal">
-              <div>
-                <label for="writer">Writer:</label>
-                <input type="text" id="writer" v-model="writer" required>
+              <div class="modal-container">
+                <div class="modal-container-box">
+                  <label for="star" class="form-guide-detail">별점</label>
+                  <div class="rating" id="starRating">
+                    <span @click="()=>rateStar(5)">&#9734;</span>
+                    <span @click="()=>rateStar(4)">&#9734;</span>
+                    <span @click="()=>rateStar(3)">&#9734;</span>
+                    <span @click="()=>rateStar(2)">&#9734;</span>
+                    <span @click="()=>rateStar(1)">&#9734;</span>
+                  </div>
+                </div>
+                <div class="modal-container-box">
+                  <label for="writer" class="form-guide-detail">작성자</label>
+                  <input class="form-write-input" type="text" id="writer" v-model="writer" required>
+                </div>
+                <div class="modal-container-box">
+                  <label for="content" class="form-guide-detail">후기 내용 </label>
+                  <textarea class="form-write-input" id="content" v-model="content" required></textarea>
+                </div>
               </div>
-
-              <div>
-                <label for="content">Content:</label>
-                <textarea id="content" v-model="content" required></textarea>
-              </div>
-
               <button type="submit">Submit</button>
             </form>
           </div>
@@ -73,12 +83,12 @@ export default {
 
       showModal: false,
       writer: "",
-      content: ""
+      content: "",
+      selectedRating: 0
     };
   },
   created() {
     const params = this.$route.params.routeId;
-    console.log(this.$route.params.routeId);
     this.params = params;
 
     this.getRoute();
@@ -100,7 +110,6 @@ export default {
       http.get(`/review/1/${this.params}`)
       .then((response) => {
         this.reviews = response.data;
-        console.log(this.reviews);
       })
       .catch((error) => {
         console.error(error);
@@ -120,6 +129,22 @@ export default {
 
       // Close the modal
       this.showModal = false;
+    },
+
+    rateStar(rating) {
+        this.selectedRating = rating;
+        const stars = document.querySelectorAll('.rating > span');
+        stars.forEach((star, index) => {
+            if (index > rating) {
+                star.classList.add('checked');
+            } else {
+                star.classList.remove('checked');
+            }
+        });
+    },
+    exportRating() {
+        console.log('Selected rating:', this.selectedRating);
+        // You can do further processing with the rating value here
     }
 
   }
@@ -141,9 +166,9 @@ export default {
   margin: 0 10px;
 }
 
-
+/* ====== 모달 ====== */
 .modal {
-  display: none;
+  /* display: none; */
   position: fixed;
   z-index: 1;
   left: 0;
@@ -153,15 +178,13 @@ export default {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
-
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto;
-  padding: 20px;
+  padding: 10px 80px 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 40%;
 }
-
 .close {
   color: #aaa;
   float: right;
@@ -169,12 +192,80 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
-
 .close:hover,
 .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
+/* 수정 */
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.modal-container-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px 0;
+  width: 100%;
+}
+.form-guide-detail {
+    /* margin: 20px; */
+    font-size: 18px;
+    font-weight: 500;
+    color: #818181;
+}
+.form-write-input {
+    padding-left: 10px;
+    height: 40px;
+    line-height: 1.2em;
+    font-size: 17px;
+    width: 100%;
+    border: 1.5px solid rgba(0,0,0,.15);
+    word-break: break-all;
+}
+.form-write-input:hover {
+    transition-duration: .2s;
+    border: 1px solid;
+}
+.form-write-input:focus {
+    border: none;
+    outline: 1.5px solid #bccceb;
+} 
+#content {
+  resize: none;
+  height: 60px;
+}
+
+/* ====== 별점 ====== */
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    font-size: 30px;
+    color: #ddd;
+    cursor: pointer;
+}
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before,
+/* .rating > span.checked:before,
+.rating > span.checked ~ span:before */
+
+.rating > span.checked{
+    content: "\2605";
+    position: absolute;
+    color: gold;
+}
+
+
+
+
 
 </style>

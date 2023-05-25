@@ -155,7 +155,7 @@ export default {
 }
 .form-write-input:focus {
     border: none;
-    outline: 1px solid #00b2b0;
+    outline: 1px solid #bccceb;
 } 
 
 /* ==================== 하단버튼 ==================== */
@@ -173,7 +173,7 @@ export default {
     cursor: pointer;
 }
 .btn-form:hover {
-    background-color: #00b2b0;
+    background-color: #bccceb;
     transition-duration: .2s;
 }
 
