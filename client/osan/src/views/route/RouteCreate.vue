@@ -3,7 +3,7 @@
 <div class="outer-box">
   <div class="inner-box">
 		<div class="title-box">
-			<common-title title="산책로 등록" property="산책로를 소개해주세요."></common-title>
+			<common-title title="산책로 등록" property="나만의 산책로를 소개해주세요."></common-title>
 		</div>
     <h5 class="form-guide-title">산책로 제목</h5>
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
@@ -17,19 +17,14 @@
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
     <input class="form-write-input" placeholder="닉네임을 입력해주세요" maxlength="40" name="title" type="text" value="" v-model="postData.writer">
 
-    <div class="form-shop">
-      <!-- <input class="form-write-input shop-input" placeholder="주소를 입력해 주세요" maxlength="40" name="title" type="text" value="" id="form-input" height="10"><br> -->
-    </div>
-
     <h5 class="form-guide-title">경로 설정</h5>
     <div class="form-guide-detail">산책 경로를 입력해주세요.
           클릭하면 마커가 표시되며 오른쪽 마우스를 클릭하면 경로가 종료됩니다.
           다시 클릭하면 입력한 산책로를 변경할 수 있습니다.</div>
-    <common-map @getPoints="getPoints" @getTime ="getTime" @getDistance="getDistance"></common-map>
-
+    <div class="map-box">
+      <common-map @getPoints="getPoints" @getTime ="getTime" @getDistance="getDistance"></common-map>
+    </div>
     <button class="btn-form" @click="postRoute">산책로 등록</button>
-
-    
 
   </div>
 </div>
@@ -163,6 +158,11 @@ export default {
     outline: 1px solid #bccceb;
 } 
 
+
+.map-box {
+  width: 100%;
+  height: 400px;
+}
 /* ==================== 하단버튼 ==================== */
 .btn-form {
     margin-top: 10px;
@@ -171,30 +171,15 @@ export default {
     border: none;
     color: #fff;
     width: 100%;
-    height: 48px;
+    height: 3rem;
     text-align: center;
     vertical-align: middle;
     border-radius: 2px;
     cursor: pointer;
+    font-size: 1.2rem;
 }
 .btn-form:hover {
-    background-color: #bccceb;
+    background-color: #819fd9;
     transition-duration: .2s;
-}
-
-.input {
-    overflow-wrap: break-word;
-    font-weight: 400;
-    transition-property: border-color,height,padding-right,color;
-    transition-duration: .2s,0s;
-    border: 1px solid rgba(0,0,0,.15);
-    background: #fff;
-    width: 100%;
-    vertical-align: middle;
-    color: rgba(0,0,0,.84);
-    height: 48px;
-    line-height: 1.2em;
-    font-size: 17px;
-    font-family: roboto,"Noto Sans KR",-apple-system,dotum,sans-serif;
 }
 </style>

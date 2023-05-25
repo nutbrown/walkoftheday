@@ -1,23 +1,23 @@
 <template>
-  <div>
-    <div>
-      <div>위치는 여기에요</div>
-      <CommonButton theme="small" value="수정하기"></CommonButton>
-    </div>
-    <div>
+  <div class="location-container">
+    <!-- <div> -->
+      <h1 class="location-title">위치는 여기에요</h1>
+      <!-- <common-button theme="middle" value="수정하기" @handle-click="tbc"></common-button> -->
+    <!-- </div> -->
+    <div class="location-address">
       {{ address }}
     </div>
-    <div>
+    <div class="locaton-content">
       설정한 위치를 기준으로 산책로가 추천 돼요.
     </div>
   </div>
 </template>
 
 <script>
-import CommonButton from '../common/CommonButton.vue';
+// import CommonButton from "@/componenets/common/CommonButton.vue";
 
 export default { 
-  components: { CommonButton },
+  components: {  },
   data() {
     return {
       address : String,
@@ -69,4 +69,36 @@ export default {
 
 </script>
 
-<style></style>
+<style>
+* {
+  box-sizing: border-box;
+}
+.location-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.location-title {
+  margin: 10px 0;
+  font-size: 1.7rem;
+}
+.location-address {
+  border: 1px solid black;
+  border-radius: 14px;
+  width: 100%;
+  height: 4rem;
+  text-align: left;
+  vertical-align: middle;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.locaton-content {
+  /* margin: 0 0 10px 0; */
+  margin-top: 10px;
+
+}
+
+
+</style>

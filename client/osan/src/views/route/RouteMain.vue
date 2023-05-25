@@ -9,12 +9,17 @@
       </div>
       <div class="route-main-container">
         <common-button value="산책로 등록하기 ➝" theme="extra-big" @handle-click="handleBtn"></common-button>
-        <route-map :points="points" @updatePoints="updatePoints"></route-map>
+        <div class="map-outer-box">
+          <route-map :points="points" @updatePoints="updatePoints"></route-map>
+        </div>
       </div>
     </div>
 
     <common-title title="후기" :property="reviewProperty"></common-title>
-    <review-list :reviews="reviews"></review-list>
+    <br>
+    <div class="review-box">
+      <review-list :reviews="reviews"></review-list>
+    </div>
   </div>
 </template>
 
@@ -82,6 +87,11 @@ export default {
 </script>
 
 <style scoped>
+.outer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .route-content {
   display: flex;
   justify-content: center;
@@ -91,7 +101,19 @@ export default {
   height: 600px;
   background-color: #f8fafd;
   border-radius: 3%;
-  padding: 1.3rem 0.5rem;
+  padding: 1.3rem 0.5rem 0 0.5rem;
   margin: 0 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.map-outer-box {
+  width: 480px;
+  height: 530px;
+  margin: 15px 0;
+}
+.review-box {
+  width: 1050px;
 }
 </style>

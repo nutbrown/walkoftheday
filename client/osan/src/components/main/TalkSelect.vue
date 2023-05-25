@@ -1,16 +1,12 @@
 <template>
-  <div>
-    <div>
+  <div class="talk-select-container">
+    <div class="talk-select-top">
       <div>{{ talk.writer }}</div>
       <div>{{ talk.regDate }}</div>
     </div>
-    <div>
+    <div class="talk-select-bottom">
       {{ talk.content }}
-      <common-button
-          value="삭제"
-          theme="small"
-          @handle-click="handleBtn"
-        ></common-button>
+      <common-button value="삭제" theme="small" @handle-click="handleBtn"></common-button>
     </div>
   </div>
 </template>
@@ -42,4 +38,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.talk-select-container {
+  background-color: #f8fafd;
+  border-radius: 10px;
+  text-align: left;
+  padding: 5px;
+
+}
+.talk-select-top {
+  display: flex;
+  flex-direction: row;
+}
+.talk-select-top > div {
+  margin: 5px;
+}
+.talk-select-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px;
+}
+</style>

@@ -30,15 +30,18 @@ export default {
 </script>
 
 <style scoped>
+* {
+  box-sizing: border-box;
+}
 .review-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* width: 100%; */
-  padding: 20px 0 30px 0;
+  width: 100%;
+  padding: 0 0 30px 0;
 }
 .review-outer-box {
-  width: 970px;
+  width: 100%;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 30px 40px;

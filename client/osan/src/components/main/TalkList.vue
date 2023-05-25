@@ -1,34 +1,26 @@
 <template>
-  <div>
-    <div>산책 한마디</div>
-    <div>
+  <div class="talk-container">
+    <h1 class="talk-title">산책 한마디</h1>
+    <div class="talk-list-form">
       <div>산책하는 사람들과 간단하게 한 마디를 공유할 수 있어요</div>
-      <div class="container">
+      <div class="talk-list-form2">
+        <input
+          type="text"
+          name="text"
+          id="text"
+          placeholder="산책 한마디를 작성해주세요."
+          v-model="postData.content"
+        />
         <div>
-          <div>
-            <label for="writer">작성자</label>
-            <input type="text" name="writer" v-model="postData.writer" />
-          </div>
-          <div>
-            <label for="writer">내용</label>
-            <input
-              type="text"
-              name="text"
-              id="text"
-              v-model="postData.content"
-            />
-          </div>
+          <label for="writer">작성자 : </label>
+          <input type="text" name="writer" v-model="postData.writer" />
         </div>
-
-        <common-button
-          value="등록하기"
-          theme="small"
-          @handle-click="handleBtn"
-        ></common-button>
       </div>
+
+      <common-button value="등록" theme="small" @handle-click="handleBtn"></common-button>
     </div>
 
-    <div v-for="(talk, index) in talks" :key="index">
+    <div v-for="(talk, index) in talks" :key="index" class="talk-list-box">
       <TalkSelect :talk="talk"></TalkSelect>
     </div>
   </div>
@@ -93,7 +85,53 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  display: flex;
+* {
+  box-sizing: border-box;
 }
+.talk-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+.talk-title {
+  margin: 10px 0;
+  font-size: 1.7rem;
+}
+.talk-list-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.talk-list-form2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#text {
+  border: 1px solid black;
+  border-radius: 14px;
+  width: 100%;
+  height: 4rem;
+  text-align: left;
+  vertical-align: middle;
+  padding: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 5px 0;
+}
+.locaton-content {
+  /* margin: 0 0 10px 0; */
+  margin-top: 10px;
+}
+
+.talk-list-box {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
 </style>

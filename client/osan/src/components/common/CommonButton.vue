@@ -37,6 +37,17 @@ export default {
           "--radius": "1.5rem",
           "--fontsize": "1rem",
         };
+      // 작은 버튼
+      } else if(this.theme === "small") {
+        return {
+          "--color": "#c8cbd1",
+           "--border": "none",
+           "--text": "white",
+           "--width": "4.5rem",
+           "--height": "1.8rem",
+           "--radius": "0.4rem",
+           "--fontsize": "12px",
+        }
       // 적당히 중간 버튼
       } else if(this.theme === "middle") {
         return {

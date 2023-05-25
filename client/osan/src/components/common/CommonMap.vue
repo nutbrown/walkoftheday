@@ -1,11 +1,7 @@
 // 지도
 <template>
-  <div>
-    <h3>카카오 맵</h3>
-    <div id="map" ref="map" style="width: 500px; height: 400px"></div>
-    <p>간간 : {{ time }}</p>
-    <p>주소 : {{ address }}</p>
-    <h3>맵이존재하나요</h3>
+  <div class="map-container">
+    <div id="map" ref="map" style="width: 100%; height: 400px"></div>
   </div>
 </template>
 
@@ -362,7 +358,7 @@ export default {
 };
 </script>
 <style scoped>
-#map {
-  width: 200px;
+.map-container {
+  width: 100%;
 }
 </style>

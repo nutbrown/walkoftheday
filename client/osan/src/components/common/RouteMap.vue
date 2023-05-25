@@ -1,7 +1,7 @@
 <template>
   <div class="map-container">
     <!-- <h3>산책로 출력 맵</h3> -->
-    <div id="map2" ref="map" style="width: 480px; height: 500px"></div>
+    <div id="map2" ref="map" style="width: 100%; height: 100%"></div>
   </div>
 </template>
 
@@ -211,6 +211,8 @@ export default {
 .map-container {
   display: flex;
   justify-content: center;
-  margin: 15px 0;
+  /* margin: 15px 0; */
+  width: 100%;
+  height: 100%;
 }
 </style>
