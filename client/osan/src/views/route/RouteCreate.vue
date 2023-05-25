@@ -82,6 +82,7 @@ export default {
           .post("/route", this.postData)
           .then((response) => {
             console.log(response);
+            this.$router.push('/route');
           })
           .catch((error) => {
             console.error(error);
