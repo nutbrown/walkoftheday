@@ -12,7 +12,7 @@ export default {
   },
   props: {
     points: {
-      
+
     },
   },
   mounted() {
@@ -61,7 +61,7 @@ export default {
       var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
 
       // 지도에 클릭 이벤트를 등록합니다
-      if (this.points != null) {
+      if (this.points != null && this.points != "") {
         const pointsA = JSON.parse(this.points);
         for (let i = 0; i < pointsA.length; i++) {
   
