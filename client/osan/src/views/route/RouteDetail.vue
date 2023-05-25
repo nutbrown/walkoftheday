@@ -19,7 +19,35 @@
       </div> -->
       <div class="content-title">후기</div>
       <review-list :reviews="reviews"></review-list>
-      <textarea v-model="review"></textarea>
+
+
+
+
+      <div>
+        <button @click="openModal">Open Modal</button>
+
+        <div v-if="showModal" class="modal">
+          <div class="modal-content">
+            <span class="close" @click="closeModal">&times;</span>
+            <h2>Modal Title</h2>
+
+            <form @submit.prevent="submitModal">
+              <div>
+                <label for="writer">Writer:</label>
+                <input type="text" id="writer" v-model="writer" required>
+              </div>
+
+              <div>
+                <label for="content">Content:</label>
+                <textarea id="content" v-model="content" required></textarea>
+              </div>
+
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -42,6 +70,10 @@ export default {
       reviews: [],
       review: "",
       params: null,
+
+      showModal: false,
+      writer: "",
+      content: ""
     };
   },
   created() {
@@ -51,6 +83,8 @@ export default {
 
     this.getRoute();
     this.getReviews();
+
+
   },
   methods : {
     getRoute() {
@@ -71,10 +105,30 @@ export default {
       .catch((error) => {
         console.error(error);
       })
+    },
+    
+    openModal() {
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    submitModal() {
+      // Perform your desired actions with the writer and content data
+      console.log("Writer:", this.writer);
+      console.log("Content:", this.content);
+
+      // Close the modal
+      this.showModal = false;
     }
 
   }
 };
+
+
+
+
+
 </script>
 
 <style>
@@ -86,4 +140,41 @@ export default {
   display: inline-block;
   margin: 0 10px;
 }
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 </style>
