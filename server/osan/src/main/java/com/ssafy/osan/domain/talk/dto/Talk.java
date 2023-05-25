@@ -7,8 +7,17 @@ public class Talk {
     private String writer;
     private String content;
     private Date createdAt;
+    private String regDate;
 
     public Talk() {
+    }
+
+    public String getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(String regDate) {
+        this.regDate = regDate;
     }
 
     public int getTalkId() {

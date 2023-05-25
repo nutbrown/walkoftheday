@@ -10,7 +10,7 @@
         <div>
           <strong>작성일 : </strong>
           <span class="review-option">
-            {{ createdAt }}
+            {{ review.regDate }}
           </span>
         </div>
       </div>

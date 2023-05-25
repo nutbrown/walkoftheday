@@ -2,7 +2,7 @@
   <div>
     <div>
       <div>{{ talk.writer }}</div>
-      <div>{{ talk.createdAt }}</div>
+      <div>{{ talk.regDate }}</div>
     </div>
     <div>
       {{ talk.content }}
