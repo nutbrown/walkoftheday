@@ -17,12 +17,22 @@ public class Route {
     private int rating;
     private int time;
     private int image;
+
+    private int distance;
     private Date createdAt;
     private Date updatedAt;
     private int[] spotsId;
     private List<Spot> spots;
 
     public Route() {
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public int getRouteId() {
