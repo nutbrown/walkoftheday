@@ -9,7 +9,7 @@
       </div>
       <div class="route-main-container">
         <common-button value="산책로 등록하기 ➝" theme="extra-big" @handle-click="handleBtn"></common-button>
-        <common-output-map :points="points" @updatePoints="updatePoints"></common-output-map>
+        <route-map :points="points" @updatePoints="updatePoints"></route-map>
       </div>
     </div>
 
@@ -24,7 +24,7 @@ import CommonList from "@/components/common/CommonList.vue";
 import ReviewList from "@/components/common/ReviewList.vue";
 import CommonButton from "@/components/common/CommonButton.vue";
 import http from "@/util/axiosConfig.js"
-import CommonOutputMap from "@/components/common/CommonOutputMap.vue";
+import RouteMap from "@/components/common/RouteMap.vue";
 
 export default {
   name: "RouteMain",
@@ -43,7 +43,7 @@ export default {
     CommonList,
     ReviewList,
     CommonButton,
-    CommonOutputMap,
+    RouteMap,
 },
   mounted() {
     this.getRoutes();
