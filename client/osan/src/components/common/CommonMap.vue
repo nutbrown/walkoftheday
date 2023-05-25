@@ -20,7 +20,8 @@ export default {
   data() {
     return {
       points: [],
-      time: 3,
+      time: 0,
+      distance: 0,
       address: "",
     };
   },
@@ -197,7 +198,11 @@ export default {
 
           this.points = path;
           this.time = (distance / 67) | 0;
+          this.distance = distance;
           this.sendDataToParent();
+          console.log(JSON.stringify(this.points));
+          console.log(this.distance);
+          console.log(this.time)
           return path;
         })
       );
@@ -351,6 +356,7 @@ export default {
     sendDataToParent() {
       this.$emit('getPoints', this.points);
       this.$emit('getTime', this.time);
+      this.$emit('getDistance', this.distance);
     },
   },
 };
