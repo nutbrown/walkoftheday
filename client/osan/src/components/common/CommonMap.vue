@@ -179,7 +179,7 @@ export default {
 
               var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
                 content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
-
+              
 
               // 그려진 선의 거리정보를 지도에 표시합니다
               showDistance(content, path[path.length - 1]);
@@ -196,6 +196,7 @@ export default {
           }
 
           this.points = path;
+          this.time = (distance / 67) | 0;
           this.sendDataToParent();
           return path;
         })
@@ -348,7 +349,8 @@ export default {
       }
     },
     sendDataToParent() {
-      this.$emit('childEvent', this.points);
+      this.$emit('getPoints', this.points);
+      this.$emit('getTime', this.time);
     },
   },
 };

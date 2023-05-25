@@ -7,15 +7,15 @@
 		</div>
     <h5 class="form-guide-title">산책로 제목</h5>
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
-    <input class="form-write-input" placeholder="제목을 입력해 주세요" maxlength="40" name="title" type="text" value="">
-    
+    <input class="form-write-input" placeholder="제목을 입력해 주세요" maxlength="40" name="title" type="text" value="" v-model="postData.title">
+  
     <h5 class="form-guide-title">산책로 내용</h5>
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
-    <textarea class="form-write-input" placeholder="내용을 입력해 주세요" maxlength="40" name="content" type="text" value=""></textarea>
+    <textarea class="form-write-input" placeholder="내용을 입력해 주세요" maxlength="40" name="content" type="text" value="" v-model="postData.content"></textarea>
     
 		<h5 class="form-guide-title">작성자</h5>
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
-    <input class="form-write-input" placeholder="닉네임을 입력해주세요" maxlength="40" name="title" type="text" value="">
+    <input class="form-write-input" placeholder="닉네임을 입력해주세요" maxlength="40" name="title" type="text" value="" v-model="postData.writer">
 
     <div class="form-shop">
       <!-- <input class="form-write-input shop-input" placeholder="주소를 입력해 주세요" maxlength="40" name="title" type="text" value="" id="form-input" height="10"><br> -->
@@ -25,9 +25,9 @@
     <div class="form-guide-detail">산책 경로를 입력해주세요.
           클릭하면 마커가 표시되며 오른쪽 마우스를 클릭하면 경로가 종료됩니다.
           다시 클릭하면 입력한 산책로를 변경할 수 있습니다.</div>
-    <common-map></common-map>
+    <common-map @getPoints="getPoints" @getTime ="getTime"></common-map>
 
-    <button class="btn-form">산책로 등록</button>
+    <button class="btn-form" @click="postRoute">산책로 등록</button>
 
     
 
@@ -38,11 +38,56 @@
 <script>
 import CommonTitle from "@/components/common/CommonTitle.vue";
 import CommonMap from "@/components/common/CommonMap.vue";
+import http from "@/util/axiosConfig.js"
+
 
 export default {
   components: {
     CommonTitle,
     CommonMap
+  },
+  data() {
+    return {
+      // 전달할 데이터 points와 time은 common map에서 받아온다.
+      postData : {
+        title : "",
+        content : "",
+        writer : "",
+        points : "",
+        pointsA : [],
+        time : 0,
+      }
+    }
+  },
+  methods : {
+    getPoints(points) {
+
+      this.postData.pointsA = points;
+    },
+    getTime(time){
+      this.postData.time = time;
+    },
+    postRoute() {
+      if (
+        this.postData.writer.length == 0 ||
+        this.postData.content.length == 0 ||
+        this.postData.title.length == 0 ||
+        this.postData.pointsA.length == 0 ||
+        this.postData.time == 0
+      ) {
+        alert("산책로의 모든 칸을 채워주세요.");
+      } else {
+        this.points = JSON.stringify(this.pointsA);
+        http
+          .post("/route", this.postData)
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    }
   }
 
 }

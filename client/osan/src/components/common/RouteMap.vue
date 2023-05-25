@@ -2,8 +2,6 @@
   <div>
     <h3>산책로 출력 맵</h3>
     <div id="map2" ref="map" style="width: 500px; height: 400px"></div>
-    <div></div>
-    <div></div>
   </div>
 </template>
 
@@ -38,7 +36,6 @@ export default {
   },
   methods: {
     initMap() {
-      console.log("안녕")
       var mapContainer = document.getElementById("map2"), // 지도를 표시할 div
         mapOption = {
           center: new kakao.maps.LatLng(37.50128800000034, 127.03528175393564), // 지도의 중심좌표
