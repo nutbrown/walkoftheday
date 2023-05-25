@@ -3,7 +3,11 @@
   <div>
     <div class="title-card">
       <route-map :points="route.points"></route-map>
-      <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
+      <div>
+        <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
+        <button @click="openModal">후기 작성하기</button>
+      </div>
+      
     </div>
     <div class="content">
       <ul class="content-nav">
@@ -111,8 +115,7 @@ export default {
       } else {
         http
           .post(`/review/1/${this.params}`, this.postData)
-          .then((response) => {
-            console.log(response.data);
+          .then(() => {
             this.postData.writer = "";
             this.postData.content = "";
             this.getReviews();

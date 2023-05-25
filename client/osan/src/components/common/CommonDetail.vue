@@ -9,19 +9,19 @@
       <div v-if="showRoute">소요 시간 : {{ object.time }}</div>
       <div v-if="showSpot">주소 : {{ address }}</div>
       <CommonRating :rating="object.rating"></CommonRating>
-      <common-button theme="move" value="후기 작성하기"></common-button>
+      <!-- <common-button theme="move" value="후기 작성하기" @handle-click="handleBtn"></common-button> -->
     </div>
   </div>
 </template>
 
 <script>
-import CommonButton from "./CommonButton.vue";
+// import CommonButton from "./CommonButton.vue";
 import CommonRating from "./CommonRating.vue";
 
 
 export default {
   name: "CommonDetail",
-  components: { CommonButton, CommonRating },
+  components: { CommonRating },
   data() {
     return {
       review: {},
@@ -41,6 +41,15 @@ export default {
       type: Object,
     }
   },
+  methdos : {
+    openModal() {
+      console.log("여기에 오나");
+      this.$emit('upModal');
+    },
+    handleBtn() {
+      console.log("헬로?")
+    }
+  }
 };
 </script>
 
