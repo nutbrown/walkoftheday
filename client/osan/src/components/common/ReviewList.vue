@@ -34,11 +34,11 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  /* width: 100%; */
   padding: 20px 0 30px 0;
 }
 .review-outer-box {
-  width: 80%;
+  width: 970px;
   border: 1px solid gray;
   border-radius: 5px;
   padding: 30px 40px;

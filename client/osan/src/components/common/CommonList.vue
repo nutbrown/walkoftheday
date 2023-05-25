@@ -1,7 +1,7 @@
 // 3. 산책로 or 경유지 리스트 출력
 
 <template>
-  <div class="container">
+  <div class="list-container">
     <div v-if="routes">
       <common-select
         v-for="(route, index) in routes"
@@ -45,12 +45,12 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.list-container {
   width: 500px;
   background-color: #f8fafd;
   border-radius: 3%;
-  padding: 1rem;
-  margin-left: 1rem;
+  /* padding: 1rem 0; */
+  /* margin-left: 1rem; */
 }
 
 .hover-effect {
@@ -59,7 +59,9 @@ export default {
 }
 
 .hover-effect:hover {
-  background-color: #333;
-  color: #eee;
+  /* background-color: #333; */
+  color: black;
+  border: 1px solid gray;
+  border-radius: 5px;
 }
 </style>

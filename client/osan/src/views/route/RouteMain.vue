@@ -2,10 +2,13 @@
 <template>
   <div class="outer-box">
     <common-title title="산책로" :property="routeProperty"></common-title>
+    <br>
     <div class="route-content">
-      <common-list :routes="routes" :points="points" @updatePoints="updatePoints"></common-list>
-      <div class="container">
-        <common-button value="산책로 등록하기" theme="move" @handle-click="handleBtn"></common-button>
+      <div class="route-main-container">
+        <common-list :routes="routes" :points="points" @updatePoints="updatePoints"></common-list>
+      </div>
+      <div class="route-main-container">
+        <common-button value="산책로 등록하기 ➝" theme="extra-big" @handle-click="handleBtn"></common-button>
         <route-map :points="points" @updatePoints="updatePoints"></route-map>
       </div>
     </div>
@@ -79,18 +82,16 @@ export default {
 </script>
 
 <style scoped>
-.outer-box {
-  /* display: flex; */
-  /* justify-content: center; */
-}
 .route-content {
   display: flex;
   justify-content: center;
 }
-.container {
+.route-main-container {
   width: 500px;
+  height: 600px;
   background-color: #f8fafd;
   border-radius: 3%;
-  padding: 2rem;
+  padding: 1.3rem 0.5rem;
+  margin: 0 10px;
 }
 </style>
