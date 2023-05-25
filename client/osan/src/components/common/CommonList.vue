@@ -38,7 +38,6 @@ export default {
   components: { CommonSelect },
   methods: {
     handleClick(points) {
-      console.log(points);
       this.$emit('updatePoints', points);
     },
   },

@@ -3,10 +3,10 @@
   <div class="outer-box">
     <common-title title="산책로" :property="routeProperty"></common-title>
     <div class="route-content">
-      <common-list :routes="routes"></common-list>
+      <common-list :routes="routes" :points="points" @updatePoints="updatePoints"></common-list>
       <div class="container">
         <common-button value="산책로 등록하기" theme="move" @handle-click="handleBtn"></common-button>
-        <common-map></common-map>
+        <route-map :points="points" @updatePoints="updatePoints"></route-map>
       </div>
     </div>
 
@@ -18,10 +18,10 @@
 <script>
 import CommonTitle from "@/components/common/CommonTitle.vue";
 import CommonList from "@/components/common/CommonList.vue";
-import CommonMap from "@/components/common/CommonMap.vue";
 import ReviewList from "@/components/common/ReviewList.vue";
 import CommonButton from "@/components/common/CommonButton.vue";
 import http from "@/util/axiosConfig.js"
+import RouteMap from "@/components/common/RouteMap.vue";
 
 export default {
   name: "RouteMain",
@@ -32,15 +32,16 @@ export default {
       reviewProperty: "산책로 실시간 후기들을 만나보세요",
       routes: [],
       reviews: [],
+      points: null,
     };
   },
   components: {
     CommonTitle,
     CommonList,
-    CommonMap,
     ReviewList,
     CommonButton,
-  },
+    RouteMap,
+},
   mounted() {
     this.getRoutes();
     this.getReview();
@@ -69,6 +70,9 @@ export default {
     handleBtn() {
       this.$router.push('route/create');
     },
+    updatePoints(points) {
+      this.points=points;
+    }
   }
   
 };
