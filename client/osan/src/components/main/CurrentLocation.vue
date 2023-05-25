@@ -52,14 +52,12 @@ export default {
   },
   methods: {
     showAddress() {
-      console.log("안녕");
       var geocoder = new kakao.maps.services.Geocoder();
       var coord = new kakao.maps.LatLng(37.50128800000034, 127.03528175393564);
       geocoder.coord2Address(coord.getLng(), coord.getLat(), this.callback);
     },
     callback(result, status) {
       if (status === kakao.maps.services.Status.OK) {
-            console.log('그런 너를 마주칠까 ' + result[0].address.address_name + '을 못가');
             this.address = result[0].address.address_name;
         }
     }    
