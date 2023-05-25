@@ -37,7 +37,7 @@ export default {
 
   data() {
     return {
-      points: [],
+      points: null,
       routes: [],
     };
   },
