@@ -2,14 +2,13 @@
 
 <template>
   <div>
-    <div>제목입니다.</div>
+    <div>{{ object.title }}</div>
 
     <div>
-      <div>작성자 : {{ writer }}</div>
-      <div v-if="showRoute">총 거리 : {{ distance }}</div>
-      <div v-if="showRoute">소요 시간 : {{ time }}</div>
+      <div>작성자 : {{ object.writer }}</div>
+      <div v-if="showRoute">소요 시간 : {{ object.time }}</div>
       <div v-if="showSpot">주소 : {{ address }}</div>
-      <CommonRating :rating="rating"></CommonRating>
+      <CommonRating :rating="object.rating"></CommonRating>
       <common-button theme="move" value="후기 작성하기"></common-button>
     </div>
   </div>
@@ -21,8 +20,14 @@ import CommonRating from "./CommonRating.vue";
 
 
 export default {
-  name: "CommonContent",
+  name: "CommonDetail",
   components: { CommonButton, CommonRating },
+  data() {
+    return {
+      review: {},
+      params: null,
+    };
+  },
   props: {
     showRoute: {
       type: Boolean,
@@ -32,21 +37,9 @@ export default {
       type: Boolean,
       required: true,
     },
-    writer: {
-      type: String,
-    },
-    distance: {
-      type: String,
-    },
-    time: {
-      type: String,
-    },
-    address: {
-      type: String,
-    },
-    star: {
-      type: String,
-    },
+    object : {
+      type: Object,
+    }
   },
 };
 </script>

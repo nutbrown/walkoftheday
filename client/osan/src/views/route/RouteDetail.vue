@@ -3,39 +3,44 @@
   <div>
     <div class="title-card">
       <common-map></common-map>
-      <common-detail></common-detail>
+      <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
     </div>
     <div class="content">
-      <div class="content-nav">
-        <div>설명</div>
-        <div>경유지</div>
-        <div>후기</div>
-      </div>
-      <div class="content-title">산책 한 마디</div>
-      <div class="content-detail">이 산책로는 비가 오는 날에는 다니지 마마</div>
-      <div class="content-title">경유지</div>
+      <ul class="content-nav">
+        <li><a>설명</a></li>
+        <li>경유지</li>
+        <li>후기</li>
+      </ul>
+      <div class="content-title">산책로 한 마디</div>
+      <div class="content-detail">{{ route.content }}</div>
+      <!-- <div class="content-title">경유지</div>
       <div class="content-carousel">
         <div></div>
-      </div>
+      </div> -->
       <div class="content-title">후기</div>
-      <review-list></review-list>
+      <review-list :reviews="reviews"></review-list>
       <textarea v-model="review"></textarea>
     </div>
   </div>
 </template>
 
 <script>
-import CommonMap from "@/components/common/CommonInput.vue";
-import CommonDetail from "@/components/common/CommonInput.vue";
+import CommonMap from "@/components/common/CommonMap.vue";
+import CommonDetail from "@/components/common/CommonDetail.vue";
+import ReviewList from "@/components/common/ReviewList.vue";
+import http from "@/util/axiosConfig.js"
 
 export default {
   components: {
     CommonMap,
     CommonDetail,
+    ReviewList
   },
   data() {
     return {
-      review: {},
+      route: {},
+      reviews: [],
+      review: "",
       params: null,
     };
   },
@@ -43,8 +48,42 @@ export default {
     const params = this.$route.params.routeId;
     console.log(this.$route.params.routeId);
     this.params = params;
+
+    this.getRoute();
+    this.getReviews();
   },
+  methods : {
+    getRoute() {
+      http.get(`/route/${this.params}`)
+      .then((response) => {
+        this.route = response.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    },
+    getReviews() {
+      http.get(`/review/1/${this.params}`)
+      .then((response) => {
+        this.reviews = response.data;
+        console.log(this.reviews);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
+
+  }
 };
 </script>
 
-<style></style>
+<style>
+.title-card {
+  display: flex;
+  justify-content: center;
+}
+.content-nav li{
+  display: inline-block;
+  margin: 0 10px;
+}
+</style>

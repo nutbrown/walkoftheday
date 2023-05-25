@@ -2,8 +2,9 @@
 <template>
 <div class="outer-box">
   <div class="inner-box">
-    <common-title title="산책로 등록" property="산책로를 소개해주세요."></common-title>
-
+		<div class="title-box">
+			<common-title title="산책로 등록" property="산책로를 소개해주세요."></common-title>
+		</div>
     <h5 class="form-guide-title">산책로 제목</h5>
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
     <input class="form-write-input" placeholder="제목을 입력해 주세요" maxlength="40" name="title" type="text" value="">
@@ -11,6 +12,10 @@
     <h5 class="form-guide-title">산책로 내용</h5>
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
     <textarea class="form-write-input" placeholder="내용을 입력해 주세요" maxlength="40" name="content" type="text" value=""></textarea>
+    
+		<h5 class="form-guide-title">작성자</h5>
+    <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
+    <input class="form-write-input" placeholder="닉네임을 입력해주세요" maxlength="40" name="title" type="text" value="">
 
     <div class="form-shop">
       <!-- <input class="form-write-input shop-input" placeholder="주소를 입력해 주세요" maxlength="40" name="title" type="text" value="" id="form-input" height="10"><br> -->
@@ -53,6 +58,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+.title-box {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-top: 20px;
 }
 .form-title-box {
   width: 100%;
