@@ -25,7 +25,7 @@
     <div class="form-guide-detail">산책 경로를 입력해주세요.
           클릭하면 마커가 표시되며 오른쪽 마우스를 클릭하면 경로가 종료됩니다.
           다시 클릭하면 입력한 산책로를 변경할 수 있습니다.</div>
-    <common-map @getPoints="getPoints" @getTime ="getTime"></common-map>
+    <common-map @getPoints="getPoints" @getTime ="getTime" @getDistance="getDistance"></common-map>
 
     <button class="btn-form" @click="postRoute">산책로 등록</button>
 
@@ -55,6 +55,7 @@ export default {
         writer : "",
         points : "",
         pointsA : [],
+        distance: 0,
         time : 0,
       }
     }
@@ -67,6 +68,10 @@ export default {
     getTime(time){
       this.postData.time = time;
     },
+    getDistance(distance) {
+      this.postData.distance = distance
+    }
+    ,
     postRoute() {
       if (
         this.postData.writer.length == 0 ||
