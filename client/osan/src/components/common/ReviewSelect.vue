@@ -36,9 +36,9 @@ export default {
   methods : {
     showDetail() {
       if(this.review.routeId) {
-        this.$router.push(`route/detail?routeId=${this.review.routeId}`);
+        this.$router.push(`route/detail/${this.review.routeId}`);
       } else {
-        this.$router.push(`spot/detail?spotId=${this.review.spotId}`);
+        this.$router.push(`spot/detail/${this.review.spotId}`);
       }
     },
   }
