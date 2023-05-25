@@ -2,7 +2,6 @@
   <div>
     <h3>산책로 출력 맵</h3>
     <div id="map2" ref="map" style="width: 500px; height: 400px"></div>
-    <div>{{ points }}</div>
   </div>
 </template>
 
@@ -12,7 +11,9 @@ export default {
     return {};
   },
   props: {
-    points: null,
+    points: {
+      
+    },
   },
   mounted() {
     if (!window.kakao || !window.kakao.maps) {
@@ -26,6 +27,7 @@ export default {
       script.addEventListener("load", () => {
         kakao.maps.load(() => {
           // 카카오맵 API가 로딩이 완료된 후 지도의 기본적인 세팅을 시작해야 한다.
+
           this.initMap();
         });
       });
@@ -33,6 +35,14 @@ export default {
     } else {
       // 이미 카카오맵 API가 로딩되어 있다면 바로 지도를 생성한다.
       this.initMap();
+    }
+  },
+  watch: {
+    points: function() {
+      // Props 값이 변화할 때 실행되는 메소드
+      
+      this.initMap();
+      // 추가적인 로직을 실행할 수 있습니다.
     }
   },
   methods: {
@@ -52,9 +62,14 @@ export default {
 
       // 지도에 클릭 이벤트를 등록합니다
       if (this.points != null) {
-        for (let i = 0; i < this.points.length; i++) {
-          console.log(this.points[i]);
-          var clickPosition = this.points[i];
+        const pointsA = JSON.parse(this.points);
+        for (let i = 0; i < pointsA.length; i++) {
+  
+          var temp = new kakao.maps.LatLng;
+          temp.La = pointsA[i].La;
+          temp.Ma = pointsA[i].Ma;
+
+          var clickPosition = temp;
 
           // 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
           if (!drawingFlag) {
