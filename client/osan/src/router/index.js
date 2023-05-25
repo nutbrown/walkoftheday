@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 // 페이지 정보들
 
 // 메인페이지
-import Main from '../views/MainRoute.vue'
+import Main from '../views/MainPage.vue'
 import RouteView from '../views/RouteView.vue'
 import SpotView from '../views/SpotView.vue'
 // 유저 회원가입 페이지
