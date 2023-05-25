@@ -3,7 +3,7 @@
 <template>
   <div>
     <!-- 산책로 -->
-    <div v-if="viewRoute" class="container">
+    <div v-if="viewRoute" class="container" @click="updatePoints">
       <div class="inner-square inner-title flex-box-row">
         <div class="title">
           {{ route.title }}
@@ -76,6 +76,9 @@ export default {
     goSpotDetail() {
       this.$router.push(`spot/detail/${this.spot.spotId}`);
     },
+    updatePoints() {
+      this.$emit('updateData');
+    }
   }
 };
 </script>

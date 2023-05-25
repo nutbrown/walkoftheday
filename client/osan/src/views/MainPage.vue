@@ -3,10 +3,10 @@
     <div class="main-up">
       <div>
         <div>오늘의 산책</div>
-        <common-list :routes="routes"></common-list>
+        <common-list :routes="routes" :points="points" @updatePoints="updatePoints"></common-list>
       </div>
       <div>
-        <common-map></common-map>
+        <route-map :points="points" @updatePoints="updatePoints"></route-map>
       </div>
     </div>
     <div class="main-up">
@@ -30,13 +30,14 @@ import CommonList from "@/components/common/CommonList.vue";
 import CurrentLocation from "@/components/main/CurrentLocation.vue";
 import CurrentWeather from "@/components/main/CurrentWeather.vue";
 import TalkList from "@/components/main/TalkList.vue";
-import CommonMap from "@/components/common/CommonMap.vue";
 import http from "@/util/axiosConfig.js"
+import RouteMap from '@/components/common/RouteMap.vue';
 
 export default {
 
   data() {
     return {
+      points: [],
       routes: [],
     };
   },
@@ -45,10 +46,9 @@ export default {
     CurrentLocation,
     CurrentWeather,
     TalkList,
-    CommonMap,
+    RouteMap,
   },
   created() {
-    this.fetchRoute();
     http.get("/route")
       .then((response) => {
         this.routes = response.data;
@@ -58,8 +58,8 @@ export default {
       })
   },
   methods: {
-    fetchRoute() {
-      
+    updatePoints(points) {
+      this.points=points;
     }
 
   }

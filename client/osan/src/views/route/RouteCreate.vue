@@ -77,11 +77,12 @@ export default {
       ) {
         alert("산책로의 모든 칸을 채워주세요.");
       } else {
-        this.points = JSON.stringify(this.pointsA);
+        this.postData.points = JSON.stringify(this.postData.pointsA);
         http
           .post("/route", this.postData)
           .then((response) => {
             console.log(response);
+            this.$router.push('/route');
           })
           .catch((error) => {
             console.error(error);
