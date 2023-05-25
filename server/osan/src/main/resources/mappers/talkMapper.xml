@@ -12,8 +12,8 @@
 
     <!-- 산책 한마디 전체 리스트-->
     <select id="selectAllTalk" resultType="Talk">
-        SELECT *
-        FROM talk
+        SELECT talkId, writer, content, date_format(createdAt, '%y-%m-%d %H:%i:%s') as createdAt
+        FROM talk;
     </select>
 
 
