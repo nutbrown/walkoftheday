@@ -27,37 +27,32 @@ public class RouteController {
 
     // 산책로 등록
     @PostMapping("")
-    public ResponseEntity<?> writeRoute(@RequestPart("title") String title,
-                                        @RequestPart("content") String content,
-                                        @RequestPart("writer") String writer,
-                                        @RequestPart("points") String points,
-                                        @RequestPart("spots") String spots,
-                                        @RequestPart("image") MultipartFile image) {
+    public ResponseEntity<?> writeRoute(@RequestBody Route route) {
 
-        // 산책로 객체 생성 후 값 넣어주기
-        Route route = new Route();
-        route.setTitle(title);
-        route.setContent(content);
-        route.setWriter(writer); // userId로 DB에 삽입
-        route.setPoints(points);
+//        // 산책로 객체 생성 후 값 넣어주기
+//        Route route = new Route();
+//        route.setTitle(title);
+//        route.setContent(content);
+//        route.setWriter(writer); // userId로 DB에 삽입
+//        route.setPoints(points);
+//
+//        // 경유지 리스트 넣어주기
+//        List<Spot> list = new ArrayList<>();
+//
+//        // String으로 들어온 spotsId 배열 처리
+//        String[] arr = spots.split(", ");
+//
+//        for(String spotId : arr) {
+//            // spotId로 Spot 객체 가져오기
+//            Spot spot = spotService.detailSpot(Integer.parseInt(spotId));
+//            // 리스트에 넣어줌
+//            list.add(spot);
+//        }
+//
+//        // List<Spot>을 Route 객체에 넣어줌
+//        route.setSpots(list);
 
-        // 경유지 리스트 넣어주기
-        List<Spot> list = new ArrayList<>();
-
-        // String으로 들어온 spotsId 배열 처리
-        String[] arr = spots.split(", ");
-
-        for(String spotId : arr) {
-            // spotId로 Spot 객체 가져오기
-            Spot spot = spotService.detailSpot(Integer.parseInt(spotId));
-            // 리스트에 넣어줌
-            list.add(spot);
-        }
-
-        // List<Spot>을 Route 객체에 넣어줌
-        route.setSpots(list);
-
-        int result = routeService.writeRoute(route, image);
+        int result = routeService.writeRoute(route);
 
         if(result > 0) {
             return new ResponseEntity<Route>(route, HttpStatus.CREATED);
