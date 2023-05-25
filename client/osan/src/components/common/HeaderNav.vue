@@ -1,9 +1,9 @@
 <template>
   <div class="outer-box">
 		<router-link to="/"><img src="../../assets/wotd-logo.png"/></router-link> 
-		<div>
-			<common-button theme="login" value="로그인"></common-button>
-			<common-button theme="login" value="로그아웃"></common-button>
+		<div class="login-btns">
+      <common-button theme="login" value="로그인"></common-button>
+			<common-button theme="login" value="회원가입"></common-button>
 		</div>
 	</div>
 </template>
@@ -26,6 +26,8 @@ export default {
 }
 img {
 	width: 200px;
-
+}
+.login-btns {
+  margin: 10px;
 }
 </style>

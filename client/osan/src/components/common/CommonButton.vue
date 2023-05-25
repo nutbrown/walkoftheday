@@ -76,9 +76,9 @@ export default {
           "--color": "black",
           "--border": "none",
           "--text": "white",
-          "--width": "5rem",
-          "--height": "3rem",
-          "--radius": "1.5rem",
+          "--width": "5.5rem",
+          "--height": "2.5rem",
+          "--radius": "1.4rem",
 
         };
       }
