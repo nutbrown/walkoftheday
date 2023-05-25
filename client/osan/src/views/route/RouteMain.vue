@@ -4,7 +4,7 @@
     <common-title title="산책로" :property="routeProperty"></common-title>
     <div class="route-content">
       <common-list :routes="routes"></common-list>
-      <div>
+      <div class="container">
         <common-button value="산책로 등록하기" theme="move" @handle-click="handleBtn"></common-button>
         <common-map></common-map>
       </div>
@@ -74,14 +74,22 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .outer-box {
   /* display: flex; */
   /* justify-content: center; */
 }
+
 .route-content {
   display: flex;
-  justify-content: space-evenly;
-  /* width: 80%; */
+  justify-content: center;
+}
+
+
+.container {
+  width: 500px;
+  background-color: #f8fafd;
+  border-radius: 3%;
+  padding: 2rem;
 }
 </style>

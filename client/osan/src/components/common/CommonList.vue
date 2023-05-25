@@ -1,7 +1,7 @@
 // 3. 산책로 or 경유지 리스트 출력
 
 <template>
-  <div>
+  <div class="container">
     <div v-if="routes">
       <div v-for="(route, index) in routes" :key="index">
         <common-select :route="route" :viewRoute="true" :viewSpot="false">
@@ -33,4 +33,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  width: 500px;
+  background-color: #f8fafd;
+  border-radius: 3%;
+  padding: 1rem;
+  margin-left: 1rem;
+}
+</style>
