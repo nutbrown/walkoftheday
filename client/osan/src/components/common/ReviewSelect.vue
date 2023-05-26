@@ -91,7 +91,7 @@ export default {
 }
 
 .review-nickname {
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 500;
     color: #152545;
     margin: 0 10px;
@@ -103,7 +103,7 @@ export default {
   color: #585858;
 }
 .review-option {
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 400;
     color: #585858;
 }

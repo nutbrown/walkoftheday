@@ -10,8 +10,8 @@
     <input class="form-write-input" placeholder="제목을 입력해 주세요" maxlength="40" name="title" type="text" value="" v-model="postData.title">
   
     <h5 class="form-guide-title">산책로 내용</h5>
-    <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
-    <textarea class="form-write-input" placeholder="내용을 입력해 주세요" maxlength="40" name="content" type="text" value="" v-model="postData.content"></textarea>
+    <div class="form-guide-detail">소개하고자 하는 산책로 내용을 80자 내로 작성해주세요.</div>
+    <textarea class="form-write-input" placeholder="내용을 입력해 주세요" maxlength="80" name="content" type="text" value="" v-model="postData.content"></textarea>
     
 		<h5 class="form-guide-title">작성자</h5>
     <div class="form-guide-detail">소개하고자 하는 산책로 제목을 32자 내로 작성해주세요.</div>
@@ -100,7 +100,7 @@ export default {
   justify-content: center;
 }
 .inner-box {
-  width: 70%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -139,6 +139,7 @@ export default {
     font-size: 14px;
     font-weight: 350;
     color: #818181;
+    text-align: left;
 }
 .form-write-input {
     padding-left: 10px;

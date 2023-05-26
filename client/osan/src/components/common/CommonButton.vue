@@ -54,8 +54,8 @@ export default {
           "--color": "gray",
            "--border": "none",
            "--text": "white",
-           "--width": "8rem",
-           "--height": "2rem",
+           "--width": "9rem",
+           "--height": "1.8rem",
            "--radius": "0.3rem",
            "--fontsize": "14px",
         }

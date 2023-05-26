@@ -57,7 +57,7 @@ export default {
 .detail-title-box {
   background-color: white;
   border-radius: 5px;
-  height: 50px;
+  height: 5.5rem;
   display: flex;
   flex-direction: column;
   align-items: start;

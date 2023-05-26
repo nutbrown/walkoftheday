@@ -106,4 +106,11 @@ export default {
   margin-right: 12px;
 }
 
+.inner-content {
+  height: 5.5rem;
+}
+.content {
+  text-align: left;
+}
+
 </style>

@@ -2,7 +2,10 @@
   <div class="talk-container">
     <h1 class="talk-title">산책 한마디</h1>
     <div class="talk-list-form">
-      <div>산책하는 사람들과 간단하게 한 마디를 공유할 수 있어요</div>
+      <div class="talk-list-top">
+        <div>산책하는 간단하게 한 마디를 공유할 수 있어요</div>
+        <common-button value="등록하기" theme="small" @handle-click="handleBtn"></common-button>
+      </div>
       <div class="talk-list-form2">
         <input
           type="text"
@@ -11,13 +14,13 @@
           placeholder="산책 한마디를 작성해주세요."
           v-model="postData.content"
         />
-        <div>
-          <label for="writer">작성자 : </label>
-          <input type="text" name="writer" v-model="postData.writer" />
+        <div class="talk-list-top">
+          <!-- <label for="writer">작성자 : </label> -->
+          <input class="talk-input" type="text" name="writer" v-model="postData.writer"
+            placeholder="닉네임을 입력해주세요." />
         </div>
       </div>
 
-      <common-button value="등록" theme="small" @handle-click="handleBtn"></common-button>
     </div>
 
     <div class="talk-list-box">
@@ -118,11 +121,11 @@ export default {
   border: 1px solid black;
   border-radius: 14px;
   width: 100%;
-  height: 4rem;
+  height: 5rem;
   text-align: left;
   vertical-align: middle;
   padding: 1rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 600;
   margin: 5px 0;
 }
@@ -140,5 +143,20 @@ export default {
 }
 .talk-list-select {
   margin: 10px 0;
+}
+
+
+.talk-input {
+  width: 100%;
+  height: 3rem;
+  border-radius: 10px;
+  padding: 0 1rem;
+
+}
+.talk-list-top {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 </style>

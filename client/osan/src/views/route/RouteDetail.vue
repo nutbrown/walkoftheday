@@ -1,66 +1,68 @@
 // 산책로 상세페이지
 <template>
-  <div class="route-detail-container">
-    <div class="title-card">
-      <div class="detail-map-box">
-        <route-map :points="route.points"></route-map>
+  <div class="detail-outer-box">
+    <div class="route-detail-container">
+      <div class="title-card">
+        <div class="detail-map-box">
+          <route-map :points="route.points"></route-map>
+        </div>
+        <div class="detail-detail-box">
+          <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
+          <button class="button-large" @click="openModal">후기 작성하기</button>
+        </div>
+        
       </div>
-      <div class="detail-detail-box">
-        <common-detail :object="route" :showRoute="true" :showSpot="false"></common-detail>
-        <button class="button-large" @click="openModal">후기 작성하기</button>
-      </div>
-      
-    </div>
-    <div class="content">
-      <ul class="content-nav">
-        <li><a>설명</a></li>
-        <li>경유지</li>
-        <li>후기</li>
-      </ul>
-      <div class="content-title">산책로 한 마디</div>
-      <div class="content-detail">{{ route.content }}</div>
-      <div class="content-title">후기</div>
-      <div class="review-box">
-        <review-list :reviews="reviews"></review-list>
-        <button class="button-large" @click="openModal">후기 작성하기</button>
-      </div>
+      <div class="content">
+        <ul class="content-nav">
+          <li><a>설명</a></li>
+          <li>경유지</li>
+          <li>후기</li>
+        </ul>
+        <div class="content-title">산책로 한 마디</div>
+        <div class="content-detail">{{ route.content }}</div>
+        <div class="content-title">후기</div>
+        <div class="review-box">
+          <review-list :reviews="reviews"></review-list>
+          <button class="button-large" @click="openModal">후기 작성하기</button>
+        </div>
 
 
-      <!-- 후기 작성 모달 -->
-      <div>
+        <!-- 후기 작성 모달 -->
+        <div>
 
-        <div v-if="showModal" class="modal">
-          <div class="modal-content">
-            <span class="close" @click="closeModal">&times;</span>
-            <h2>후기 작성</h2>
-            <p>산책로에 대한 솔직한 후기를 작성해주세요.</p>
-            <form @submit.prevent="submitModal">
-              <div class="modal-container">
-                <div class="modal-container-box">
-                  <label for="star" class="form-guide-detail">별점</label>
-                  <div class="rating" id="starRating">
-                    <span @click="()=>rateStar(5)">&#9734;</span>
-                    <span @click="()=>rateStar(4)">&#9734;</span>
-                    <span @click="()=>rateStar(3)">&#9734;</span>
-                    <span @click="()=>rateStar(2)">&#9734;</span>
-                    <span @click="()=>rateStar(1)">&#9734;</span>
+          <div v-if="showModal" class="modal">
+            <div class="modal-content">
+              <span class="close" @click="closeModal">&times;</span>
+              <h2>후기 작성</h2>
+              <p>산책로에 대한 솔직한 후기를 작성해주세요.</p>
+              <form @submit.prevent="submitModal">
+                <div class="modal-container">
+                  <div class="modal-container-box">
+                    <label for="star" class="form-guide-detail">별점</label>
+                    <div class="rating" id="starRating">
+                      <span @click="()=>rateStar(5)">&#9734;</span>
+                      <span @click="()=>rateStar(4)">&#9734;</span>
+                      <span @click="()=>rateStar(3)">&#9734;</span>
+                      <span @click="()=>rateStar(2)">&#9734;</span>
+                      <span @click="()=>rateStar(1)">&#9734;</span>
+                    </div>
+                  </div>
+                  <div class="modal-container-box">
+                    <label for="writer" class="form-guide-detail">작성자</label>
+                    <input class="form-write-input" type="text" id="writer" v-model="postData.writer" required>
+                  </div>
+                  <div class="modal-container-box">
+                    <label for="content" class="form-guide-detail">후기 내용 </label>
+                    <textarea class="form-write-input" id="content" v-model="postData.content" required></textarea>
                   </div>
                 </div>
-                <div class="modal-container-box">
-                  <label for="writer" class="form-guide-detail">작성자</label>
-                  <input class="form-write-input" type="text" id="writer" v-model="postData.writer" required>
-                </div>
-                <div class="modal-container-box">
-                  <label for="content" class="form-guide-detail">후기 내용 </label>
-                  <textarea class="form-write-input" id="content" v-model="postData.content" required></textarea>
-                </div>
-              </div>
-              <button class="button-middle" @click="postReview">후기 제출</button>
-            </form>
+                <button class="button-middle" @click="postReview">후기 제출</button>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </template>
@@ -185,7 +187,13 @@ export default {
 </script>
 
 <style>
+.detail-outer-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .route-detail-container {
+  width: 70%;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
